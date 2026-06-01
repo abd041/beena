@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
 :root {
+  --forest: #0b1c16;
+  --forest-dark: #071410;
+  --forest-elevated: #0f2a22;
+  --gold: #f7c35f;
+  --gold-hover: #e5b24e;
+  --neutral-50: #f7f6f3;
+  --neutral-900: #1a1a1a;
+  --muted: #5c6470;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: var(--neutral-900);
+  /* RISE Pakistan Health sub-brand */
+  --rise-green: #014421;
+  --rise-green-dark: #012a16;
+  --rise-green-elevated: #0a5c36;
+  --rise-yellow: #f9c74f;
+  --rise-yellow-hover: #e8b63d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-forest-elevated: var(--forest-elevated);
+  --color-gold: var(--gold);
+  --color-gold-hover: var(--gold-hover);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-900: var(--neutral-900);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --color-rise-green: var(--rise-green);
+  --color-rise-green-dark: var(--rise-green-dark);
+  --color-rise-green-elevated: var(--rise-green-elevated);
+  --color-rise-yellow: var(--rise-yellow);
+  --color-rise-yellow-hover: var(--rise-yellow-hover);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.rise-theme {
+  --background: var(--rise-green-dark);
+  --foreground: #ffffff;
+}
+
+html {
+  overflow-x: clip;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+@layer utilities {
+  .card-hover-lift {
+    @apply transition-[transform,box-shadow,border-color] duration-300 motion-reduce:transition-none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card-hover-lift:hover {
+      transform: translateY(-4px);
+    }
+  }
 }

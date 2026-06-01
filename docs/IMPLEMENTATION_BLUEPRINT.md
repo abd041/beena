@@ -15,6 +15,8 @@
 
 Rebuild BEEÑA-E Consulting from Duda into a **conversion-focused, SEO-first, Supabase-backed** platform on **Next.js App Router**. The homepage mockup defines the visual north star; the project document defines features (blog, newsletter, booking, admin, portfolio, future forum).
 
+**Approved add-on (full implementation):** **RISE Pakistan Health** — a dedicated sub-brand section on the same site (nav tab + landing page, green/yellow identity, four pillars), clearly attributed as *A Project of Beena-E Consulting, USA*.
+
 Architecture priorities:
 
 - **Next.js:** App Router, React Server Components, Metadata API, Server Actions, `next/image`, ISR/sitemap/robots
@@ -211,6 +213,7 @@ No Redux. No separate Express API — Next.js Route Handlers + Server Actions ta
 | `/book` | Schedule consult | High-intent | Booking complete | Calendly or form → Supabase | Date picker | Clear CTA meta |
 | `/newsletter` | Dedicated signup | Subscribers | Email in Supabase | Value prop, form | Inline validation | Optional noindex |
 | `/events` | Calendar (Phase 2) | Attendees | RSVP | List, filters | iCal | `Event` JSON-LD |
+| `/rise-pakistan-health` | RISE sub-brand landing (Phase 10) | Diaspora physicians, partners | Contact / express interest | Hero lockup, core message, four pillars, parent attribution | Scroll reveals, pillar cards | RISE + diaspora health keywords |
 | `/privacy`, `/terms` | Compliance | Legal | — | Static prose | — | Footer links |
 
 ### 2.2 Admin (Supabase Auth required)
@@ -230,6 +233,54 @@ No Redux. No separate Express API — Next.js Route Handlers + Server Actions ta
 |-------|---------|
 | `/community` | Coming soon + Supabase interest table |
 | `/community/topics`, `/community/t/[id]` | Phase 3 — full forum with Supabase Auth roles |
+
+### 2.4 RISE Pakistan Health (sub-brand — Phase 10, full scope)
+
+**Status:** Approved for complete implementation on the main BEEÑA-E site (not a separate domain required for v1).
+
+**Positioning:** RISE Pakistan Health is a project of Beena-E Consulting, USA, built around **Research, Innovation, Service, and Education** — mobilizing diaspora excellence for Pakistan's health. Visual identity: **Pakistan green + yellow** (roots, optimism, renewal) while the parent lockup maintains the BEEÑA-E relationship.
+
+**Recommended lockup (hero):**
+
+```
+RISE Pakistan Health
+A Project of Beena-E Consulting, USA
+Research. Innovation. Service. Education.
+Mobilizing diaspora excellence for Pakistan's health.
+```
+
+**Core message (body copy):** RISE turns scattered diaspora goodwill into structured health impact through research collaboration, innovation pilots, service programs, and education initiatives.
+
+| Pillar | On-page content focus |
+|--------|------------------------|
+| **Research** | Joint research, data registries, publications, grant support, mentorship for early-career investigators |
+| **Innovation** | Digital health, AI-enabled tools, quality improvement, workflow redesign, scalable care models |
+| **Service** | Visiting faculty, virtual case conferences, specialty consultations, disaster response, outcome-linked philanthropy |
+| **Education** | Mentorship, lectures, residency guidance, research bootcamps, curriculum support, leadership development |
+
+**UX / IA**
+
+| Item | Plan |
+|------|------|
+| Navigation | New header item (e.g. **RISE Pakistan Health** or shorter **RISE Pakistan**); included in mobile drawer |
+| Route | `/rise-pakistan-health` (canonical); optional 301 from `/rise` if client prefers short URL |
+| Layout | Dedicated page template or `(marketing)/rise-pakistan-health/` route with **sub-brand theme** (CSS variables: RISE green/yellow, not main forest/gold) |
+| Sections | Hero (lockup + tagline), core message, four pillar cards/grid, optional “Get involved” CTA, parent link back to BEEÑA-E About/Contact |
+| Footer | Same site footer with clear line: initiative of Beena-E Consulting, USA |
+| Forms | Primary CTA → existing `/contact` with subject prefill, **or** dedicated interest capture → `form_submissions` (type: `rise_interest`) |
+| Assets | Client to supply RISE logo/lockup files when available; placeholder typography lockup acceptable for v1 |
+| SEO | Dedicated `generateMetadata`, Organization/Project JSON-LD optional, sitemap entry |
+| Admin (optional v1.1) | Reuse posts table with `category = rise` for RISE news, or static content only for launch |
+
+**Out of scope for Phase 10 v1 (future):** Separate subdomain, summit registration system, full multi-page RISE microsite, Urdu localization, dedicated RISE admin CMS (unless scoped later).
+
+**Client deliverables before build:**
+
+- [ ] Final nav label (full name vs. “RISE Pakistan”)
+- [ ] RISE logo / lockup artwork (vector or high-res PNG)
+- [ ] Approved green/yellow hex values (or approve design defaults)
+- [ ] Primary CTA (contact form, email, founding circle, external link)
+- [ ] Any photography or diaspora/partnership imagery with usage rights
 
 ---
 
@@ -507,8 +558,23 @@ REVALIDATE_SECRET=
 | **7 — SEO** | Metadata, sitemap, redirects, JSON-LD | 8–12h | GSC-ready |
 | **8 — Testing** | a11y, browsers, RLS audit | 12–16h | Signed test report |
 | **9 — Deployment** | DNS cutover, email verification | 8–12h | Production live |
+| **10 — RISE Pakistan Health** | Sub-brand landing + nav + theme | 12–20h | `/rise-pakistan-health` live, four pillars, lockup, parent attribution, SEO |
 
-**Total:** ~116–168 hours. Client 7-day target = **MVP subset** (Home, Contact, Newsletter, static services, blog shell, Supabase dashboard admin).
+**Total (core site):** ~116–168 hours.  
+**Total (including RISE Phase 10):** ~128–188 hours.  
+Client 7-day target = **MVP subset** (Home, Contact, Newsletter, static services, blog shell, Supabase dashboard admin). **RISE is post-MVP / full v1** unless client reprioritizes timeline.
+
+### Phase 10 tasks — RISE Pakistan Health (complete implementation)
+
+1. Add RISE design tokens to `globals.css` (green/yellow palette) and `rise-*` utility classes without breaking main brand.
+2. Create `src/lib/data/rise-content.ts` with lockup, core message, and four pillar copy from client brief.
+3. Build `src/components/marketing/rise/` — `RiseHero`, `RisePillars`, `RiseCta`, optional `RiseParentBanner`.
+4. Add `src/app/(marketing)/rise-pakistan-health/page.tsx` with sub-brand layout (header/footer remain shared; page body uses RISE theme).
+5. Add nav link in `SiteHeader` and `MobileNav`; footer quick link optional.
+6. Wire primary CTA (contact with query param or Server Action → `form_submissions`).
+7. `generateMetadata` + sitemap entry; internal link from About page optional.
+8. QA: contrast on green/yellow, mobile layout, spelling (RISE / Pakistan / Beena-E Consulting, USA).
+9. Lighthouse pass on new route; document in deployment checklist.
 
 ### Phase 1 tasks (Next.js + Supabase)
 
@@ -651,6 +717,7 @@ Avoid scroll-jacking and infinite loops.
 12. Booking + Portfolio  
 13. SEO (sitemap, metadata, redirects)  
 14. Performance + QA + DNS cutover  
+15. **RISE Pakistan Health** — Phase 10 (sub-brand page, nav, tokens, CTAs, SEO)  
 
 ---
 
@@ -692,6 +759,7 @@ Avoid scroll-jacking and infinite loops.
 | Supabase admin | Dashboard OK | Custom `/admin` |
 | Booking | Calendly/Tally → Supabase | Full workflow |
 | Forum | `/community` stub table | Phase 3 |
+| RISE Pakistan Health | — | ✅ Full landing + nav + sub-brand theme (Phase 10) |
 
 ---
 
@@ -706,6 +774,7 @@ Avoid scroll-jacking and infinite loops.
 - [ ] Duda URL → Next.js redirect map  
 - [ ] DNS export (MX, SPF, DKIM preserved)  
 - [ ] Tally form IDs for webhook → Supabase  
+- [ ] RISE Pakistan Health: nav label, logo/lockup, green/yellow colors, primary CTA  
 
 ---
 
@@ -714,6 +783,8 @@ Avoid scroll-jacking and infinite loops.
 | Date | Change |
 |------|--------|
 | 2026-05-31 | Initial blueprint — stack locked to Next.js + Supabase |
+| 2026-05-31 | Phase 10 added — RISE Pakistan Health sub-brand (full implementation approved) |
+| 2026-05-31 | Phase 10 implemented; Pexels stock images in `public/images/stock/` |
 
 ---
 
