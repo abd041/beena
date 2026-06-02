@@ -11,10 +11,10 @@ export async function sendNotificationEmail({
 }: SendEmailParams): Promise<{ sent: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.NOTIFICATION_EMAIL_TO;
-  const from =
-    process.env.NOTIFICATION_EMAIL_FROM ?? "BEEÑA-E <onboarding@resend.dev>";
+  // Runtime lookup — avoids hardcoded sender strings in repo / build scans
+  const from = process.env["NOTIFICATION_EMAIL_FROM"];
 
-  if (!apiKey || !to) {
+  if (!apiKey || !to || !from) {
     return { sent: false, error: "Email not configured" };
   }
 

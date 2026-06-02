@@ -7,3 +7,5 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Server bundles include these at build time; omit from Netlify secrets scan
+  SECRETS_SCAN_OMIT_KEYS = "NOTIFICATION_EMAIL_FROM,NOTIFICATION_EMAIL_TO"
