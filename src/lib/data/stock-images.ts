@@ -3,7 +3,7 @@
  */
 export const STOCK_IMAGES = {
   heroEye: "/images/stock/hero-eye.jpg",
-  aboutLab: "/images/stock/about-lab.jpg",
+  aboutLab: "/images/home/about-vision-science-impact.png",
   insightEmerging: "/images/stock/insight-emerging.jpg",
   insightRegulatory: "/images/stock/insight-regulatory.jpg",
   insightBiomarkers: "/images/stock/insight-biomarkers.jpg",

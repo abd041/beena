@@ -2,11 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Globe2, Microscope, Target, Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { FeaturedInsights } from "@/components/marketing/about/featured-insights";
+import { EngagementProcess } from "@/components/marketing/about/engagement-process";
+import { GlobalNetwork } from "@/components/marketing/about/global-network";
+import { LeadershipAdvisory } from "@/components/marketing/about/leadership-advisory";
+import { ScientificExpertise } from "@/components/marketing/about/scientific-expertise";
+import { TrustedPartnersMarquee } from "@/components/marketing/about/trusted-partners-marquee";
+import { WhyChooseUs } from "@/components/marketing/about/why-choose-us";
 import { Reveal } from "@/components/motion/reveal";
 import { STOCK_IMAGES } from "@/lib/data/stock-images";
+import { getFeaturedPosts } from "@/lib/data/fetch-posts";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
@@ -39,16 +46,66 @@ const pillars = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const featuredPosts = await getFeaturedPosts(3);
+
   return (
     <>
-      <PageHeader
-        eyebrow="About"
-        title="Vision. Science. Impact."
-        description="A global ophthalmic biotech advisory partner built on scientific credibility, trusted relationships, and measurable outcomes."
-      />
+      <section className="relative overflow-hidden bg-forest pt-24 text-white md:pt-28">
+        <Image
+          src="/images/hero/about-hero.png"
+          alt="Scientist in a laboratory using a microscope with biotech interface overlay"
+          fill
+          priority
+          className="object-cover object-right"
+          sizes="100vw"
+        />
+        <div className="lux-noise pointer-events-none absolute inset-0" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-0 bg-linear-to-b from-forest-dark/20 via-transparent to-forest-dark/65"
+          aria-hidden
+        />
+        <Container className="relative pb-18 pt-6 md:pb-24">
+          <div className="max-w-3xl text-left">
+            <div className="lux-glass rounded-3xl px-7 py-10 md:px-10 md:py-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold/90">
+                About
+              </p>
+              <h1 className="mt-3 font-serif text-4xl leading-[1.06] md:text-6xl lg:text-[4.15rem]">
+                Vision. Science. <span className="text-gold">Impact.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
+                A global ophthalmic biotech advisory partner built on scientific
+                credibility, trusted relationships, and measurable outcomes.
+              </p>
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Link
+                  href="/book"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-gold px-8 text-base font-medium text-forest-dark shadow-[0_14px_40px_rgba(217,181,109,0.22)] transition-all duration-200 hover:bg-gold-hover hover:shadow-[0_18px_56px_rgba(217,181,109,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-forest active:scale-[0.98] motion-reduce:active:scale-100"
+                >
+                  Schedule a Consultation →
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 bg-white/6 px-8 text-base font-medium text-white backdrop-blur-md transition-all duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-forest active:scale-[0.98] motion-reduce:active:scale-100"
+                >
+                  Explore Services
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
 
-      <Section variant="light">
+      <WhyChooseUs />
+      <ScientificExpertise />
+      <GlobalNetwork />
+      <EngagementProcess />
+      <LeadershipAdvisory />
+      <FeaturedInsights posts={featuredPosts} />
+      <TrustedPartnersMarquee />
+
+      <Section variant="light" className="hidden">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <Reveal>
@@ -82,7 +139,7 @@ export default function AboutPage() {
                   alt="Researchers collaborating in a scientific setting"
                   width={900}
                   height={600}
-                  className="aspect-[4/3] w-full object-cover"
+                  className="aspect-4/3 w-full object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -91,7 +148,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section variant="white">
+      <Section variant="white" className="hidden">
         <Container>
           <Reveal className="mx-auto max-w-3xl text-center">
             <h2 className="font-serif text-3xl text-neutral-900">Mission & Vision</h2>
@@ -117,7 +174,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section variant="forest">
+      <Section variant="forest" className="hidden">
         <Container className="text-center">
           <Reveal>
             <h2 className="font-serif text-3xl text-white md:text-4xl">

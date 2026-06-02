@@ -5,7 +5,11 @@ Stock photography used on the marketing site. All images are used under their re
 | File | Source | Subject |
 |------|--------|---------|
 | `public/images/stock/hero-eye.jpg` | [Pexels](https://www.pexels.com/photo/eye-exam-576581/) | Ophthalmic / eye care |
-| `public/images/stock/about-lab.jpg` | [Pexels](https://www.pexels.com/photo/2280571/) | Laboratory research |
+| `public/images/hero/about-hero.png` | Client provided | About page hero background |
+| `public/images/home/about-vision-science-impact.png` | Client provided | Vision / Science / Impact section |
+| `public/images/about/why-choose.jpg` | [Pexels](https://www.pexels.com/photo/2280571/) | Lab / scientific collaboration |
+| `public/images/about/expertise.jpg` | [Pexels](https://www.pexels.com/photo/3825527/) | Medical technology / diagnostics |
+| `public/images/about/network.jpg` | [Pexels](https://www.pexels.com/photo/3184292/) | Global healthcare collaboration |
 | `public/images/stock/insight-emerging.jpg` | [Pexels](https://www.pexels.com/photo/2280571/) | Science / research |
 | `public/images/stock/insight-regulatory.jpg` | [Pexels](https://www.pexels.com/photo/2280549/) | Laboratory |
 | `public/images/stock/insight-biomarkers.jpg` | [Pexels](https://www.pexels.com/photo/3825527/) | Medical technology |
