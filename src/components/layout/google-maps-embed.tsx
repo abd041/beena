@@ -1,6 +1,19 @@
-export function GoogleMapsEmbed({ embedUrl }: { embedUrl: string }) {
+import { cn } from "@/lib/utils/cn";
+
+export function GoogleMapsEmbed({
+  embedUrl,
+  className,
+}: {
+  embedUrl: string;
+  className?: string;
+}) {
   return (
-    <div className="overflow-hidden rounded-xl border border-neutral-200">
+    <div
+      className={cn(
+        "overflow-hidden rounded-xl border border-neutral-200",
+        className,
+      )}
+    >
       <iframe
         src={embedUrl}
         title="Office location map"
