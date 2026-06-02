@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { CinematicAtmosphere } from "@/components/marketing/lux/cinematic-atmosphere";
 import { Reveal } from "@/components/motion/reveal";
 import { AnimatedStat } from "@/components/marketing/lux/animated-stat";
+import { EnterpriseTrustLine } from "@/components/marketing/lux/enterprise-trust-line";
 import { impactMetrics, impactMetricsHome } from "@/lib/data/about-content";
 import { cn } from "@/lib/utils/cn";
 
@@ -28,22 +29,14 @@ export function ClientSuccessMetrics({
 
       <Container className="relative">
         <Reveal className={isMinimal ? "max-w-lg" : "mx-auto max-w-2xl text-center"}>
-          <p className="lux-eyebrow">Enterprise impact</p>
+          <p className="lux-eyebrow">Track record</p>
           <h2
             className={cn(
               "lux-heading mt-6",
-              isMinimal ? "text-3xl md:text-[2.5rem]" : "text-3xl md:text-4xl",
+              isMinimal ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl",
             )}
           >
-            {isMinimal ? (
-              <>
-                Outcomes that speak
-                <br />
-                <span className="text-white/50">to institutional partners</span>
-              </>
-            ) : (
-              "Enterprise impact across ophthalmic innovation"
-            )}
+            {isMinimal ? "Representative program experience" : "Ophthalmic advisory experience"}
           </h2>
         </Reveal>
 
@@ -67,7 +60,7 @@ export function ClientSuccessMetrics({
               {isMinimal ? (
                 <div>
                   <p
-                    className="lux-stat-value text-[3.25rem] md:text-6xl lg:text-[4.75rem] lg:leading-none"
+                    className="lux-stat-value text-[2.75rem] md:text-5xl lg:text-[3.5rem] lg:leading-none"
                     aria-label={`${metric.value}${metric.suffix} ${metric.label}`}
                   >
                     <AnimatedStat value={metric.value} suffix={metric.suffix} />
@@ -76,7 +69,7 @@ export function ClientSuccessMetrics({
                     className="mx-auto mt-8 h-px w-6 bg-linear-to-r from-transparent via-gold/35 to-transparent lg:mx-0 lg:via-gold/35"
                     aria-hidden
                   />
-                  <p className="mx-auto mt-6 max-w-[12rem] text-[12px] leading-[1.7] tracking-[0.04em] text-white/48 lg:mx-0">
+                  <p className="mx-auto mt-6 max-w-[12rem] text-[13px] leading-[1.65] text-white/65 lg:mx-0">
                     {metric.label}
                   </p>
                 </div>
@@ -91,6 +84,12 @@ export function ClientSuccessMetrics({
             </Reveal>
           ))}
         </div>
+        {isMinimal ? (
+          <EnterpriseTrustLine className="text-white/50">
+            Metrics reflect cumulative experience across leadership and selected
+            engagements. Individual results vary by program and indication.
+          </EnterpriseTrustLine>
+        ) : null}
       </Container>
     </section>
   );

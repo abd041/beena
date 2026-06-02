@@ -1,7 +1,8 @@
-import { Container } from "@/components/layout/container";
-import { PageHeader } from "@/components/layout/page-header";
-import { Section } from "@/components/layout/section";
+import { InnerSection } from "@/components/layout/inner-section";
+import { LuxFormPanel } from "@/components/layout/lux-form-panel";
+import { PageHero } from "@/components/layout/page-hero";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { STOCK_IMAGES } from "@/lib/data/stock-images";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
@@ -13,23 +14,31 @@ export const metadata = buildPageMetadata({
 export default function NewsletterPage() {
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Newsletter"
-        title="Stay Informed"
-        description="Ophthalmic biotech insights delivered to your inbox."
+        title="Stay"
+        titleAccent="informed"
+        description="Periodic perspectives on ophthalmic development, regulation, and commercial strategy."
+        imageSrc={STOCK_IMAGES.insightEmerging}
+        grade="cool"
+        mood="cool"
+        size="large"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Newsletter" },
+        ]}
       />
 
-      <Section variant="forest">
-        <Container size="content">
-          <div className="rounded-2xl border border-white/10 bg-forest-elevated/50 p-8 md:p-10">
-            <p className="mb-6 text-white/75">
-              Join leaders in ophthalmic development who rely on BEEÑA-E for
-              regulatory, commercial, and scientific perspectives.
-            </p>
+      <InnerSection variant="ivory" className="lux-section-y-tight">
+        <div className="mx-auto max-w-xl">
+          <LuxFormPanel
+            title="Subscribe to insights"
+            description="Updates for development, regulatory, and commercial leaders in ophthalmic biotech."
+          >
             <NewsletterForm />
-          </div>
-        </Container>
-      </Section>
+          </LuxFormPanel>
+        </div>
+      </InnerSection>
     </>
   );
 }

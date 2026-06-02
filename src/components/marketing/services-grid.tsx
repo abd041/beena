@@ -33,15 +33,15 @@ export function ServicesGrid({
       <Container className="relative">
         <div className="lux-prose-editorial text-left">
           <p className="lux-eyebrow">What we do</p>
-          <h2 className="lux-heading mt-6 text-3xl md:text-4xl lg:text-[3.1rem]">
+          <h2 className="lux-heading mt-6 text-2xl md:text-3xl lg:text-[2.5rem]">
             Development
             <br className="hidden sm:block" />
-            <span className="text-white/75"> services</span>
+            <span className="text-white/80"> services</span>
           </h2>
           <div className="lux-divider mt-8" aria-hidden />
-          <p className="mt-9 max-w-md text-[0.95rem] leading-[1.85] text-white/60 md:text-base">
-            End-to-end ophthalmic advisory — curated for sponsors who need depth,
-            not dashboards of deliverables.
+          <p className="mt-9 max-w-md text-[0.95rem] leading-[1.8] text-white/75 md:text-base">
+            Strategy, development, regulatory, access, and commercialization —
+            delivered by senior advisors with ophthalmic depth.
           </p>
         </div>
 

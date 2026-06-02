@@ -14,9 +14,13 @@ export function CinematicImage({
         {...props}
         className={cn("lux-image-grade h-full w-full object-cover", className)}
       />
-      <div className={cn("lux-image-overlay absolute inset-0", `lux-image-overlay--${grade}`)} />
-      <div className="lux-image-vignette absolute inset-0" />
-      <div className="lux-image-haze absolute inset-0" />
+      <div
+        className={cn(
+          "lux-image-overlay absolute inset-0 opacity-[0.32]",
+          `lux-image-overlay--${grade}`,
+        )}
+      />
+      <div className="lux-image-vignette absolute inset-0 opacity-60" />
     </div>
   );
 }

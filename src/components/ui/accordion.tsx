@@ -21,7 +21,7 @@ export function Accordion({
   const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
 
   return (
-    <div className={cn("divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white", className)}>
+    <div className={cn("lux-faq", className)}>
       {items.map((item) => {
         const isOpen = openId === item.id;
         const panelId = `${baseId}-${item.id}`;

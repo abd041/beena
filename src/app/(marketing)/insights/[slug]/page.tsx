@@ -1,11 +1,11 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/layout/container";
-import { Section } from "@/components/layout/section";
-import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { InnerSection } from "@/components/layout/inner-section";
+import { PageHero } from "@/components/layout/page-hero";
 import { ArticleProse } from "@/components/cms/article-prose";
-import { Badge } from "@/components/ui/badge";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { DetailHeroMedia } from "@/components/marketing/lux/detail-hero-media";
+import { ReadingProgress } from "@/components/marketing/lux/reading-progress";
+import { ContentRelatedLinks } from "@/components/marketing/content-related-links";
 import { RelatedPosts } from "@/components/marketing/related-posts";
 import { StickyMobileCta } from "@/components/marketing/sticky-mobile-cta";
 import {
@@ -14,7 +14,6 @@ import {
   getAllPosts,
 } from "@/lib/data/fetch-post-detail";
 import { buildPageMetadata } from "@/lib/seo/metadata";
-import { cn } from "@/lib/utils/cn";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,11 +35,29 @@ export async function generateMetadata({ params }: Props) {
   const post = await getPostBySlug(slug);
   if (!post) return {};
 
-  return buildPageMetadata({
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const ogImage = post.imageUrl
+    ? post.imageUrl.startsWith("http")
+      ? post.imageUrl
+      : `${baseUrl}${post.imageUrl}`
+    : undefined;
+
+  const meta = buildPageMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/insights/${slug}`,
+    imagePath: ogImage,
   });
+
+  return {
+    ...meta,
+    openGraph: {
+      ...(typeof meta.openGraph === "object" ? meta.openGraph : {}),
+      type: "article",
+      publishedTime: post.publishedAt,
+    },
+  };
 }
 
 export default async function InsightArticlePage({ params }: Props) {
@@ -49,9 +66,11 @@ export default async function InsightArticlePage({ params }: Props) {
   if (!post) notFound();
 
   const allPosts = await getAllPosts();
-  const related = allPosts
-    .filter((p) => p.slug !== slug)
-    .slice(0, 3);
+  const related = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const articleUrl = `${baseUrl}/insights/${slug}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -60,71 +79,58 @@ export default async function InsightArticlePage({ params }: Props) {
     description: post.excerpt,
     datePublished: post.publishedAt,
     author: { "@type": "Organization", name: "BEEÑA-E Consulting" },
+    publisher: { "@type": "Organization", name: "BEEÑA-E Consulting" },
+    mainEntityOfPage: articleUrl,
+    url: articleUrl,
+    ...(post.imageUrl ? { image: [post.imageUrl] } : {}),
   };
 
   return (
     <>
+      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Section variant="forest" padding="compact" className="pt-28 md:pt-32">
-        <Container size="content">
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Insights", href: "/insights" },
-              { label: post.title },
-            ]}
-          />
-          <Badge variant="gold" className="mt-2">
-            {post.category}
-          </Badge>
-          <h1 className="mt-4 font-serif text-3xl text-white md:text-4xl lg:text-5xl">
-            {post.title}
-          </h1>
-          <div className="mt-4 flex gap-4 text-sm text-white/70">
-            <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-            <span>{post.readTimeMin} min read</span>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        eyebrow={post.category}
+        title={post.title}
+        description={post.excerpt}
+        grade="cool"
+        mood="cool"
+        size="compact"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Insights", href: "/insights" },
+          { label: post.title },
+        ]}
+      >
+        <p className="text-[12px] tracking-[0.12em] text-white/50 uppercase">
+          <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+          <span className="mx-3" aria-hidden>
+            ·
+          </span>
+          {post.readTimeMin} min read
+        </p>
+      </PageHero>
 
-      {post.imageUrl ? (
-        <div className="relative h-56 w-full md:h-80 lg:h-96">
-          <Image
-            src={post.imageUrl}
-            alt={post.title}
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent"
-            aria-hidden
-          />
-        </div>
-      ) : (
-        <div
-          className={cn(
-            "h-48 w-full bg-gradient-to-br md:h-64",
-            post.imageGradient,
-          )}
-          aria-hidden
-        />
-      )}
+      <DetailHeroMedia
+        src={post.imageUrl}
+        alt={post.title}
+        gradientClassName={post.imageGradient}
+      />
 
-      <Section variant="white" className="pb-24 md:pb-16">
-        <Container size="content">
-          <ArticleProse paragraphs={post.content} />
-        </Container>
-      </Section>
+      <InnerSection variant="ivory" className="pb-32 pt-16 md:pb-32 md:pt-20">
+        <ArticleProse paragraphs={post.content} />
+        <ContentRelatedLinks serviceSlug={post.relatedServiceSlug} />
+      </InnerSection>
 
       <RelatedPosts posts={related} />
       <CtaBanner
-        title="Discuss this topic with our advisors"
-        description="Connect with BEEÑA-E for tailored guidance on your ophthalmic program."
+        title="Discuss strategic priorities with our advisors"
+        description="Confidential consultation on development, regulatory, access, or commercialization planning."
+        primaryLabel="Schedule a Consultation"
+        secondaryLabel="Contact Our Team"
       />
       <StickyMobileCta />
     </>

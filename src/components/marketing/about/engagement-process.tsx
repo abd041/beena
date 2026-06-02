@@ -19,8 +19,8 @@ export function EngagementProcess() {
       <Container className="relative">
         <SectionHeader
           eyebrow="Engagement process"
-          title="A high-touch workflow built for speed and rigor"
-          description="A clear sequence that aligns science, regulation, access, and launch — tailored to the stage and risk profile of your ophthalmic program."
+          title="Structured engagement from assessment through launch"
+          description="A defined sequence aligning science, regulation, access, and commercialization — scaled to program stage, modality, and governance requirements."
           align="left"
         />
 
@@ -51,7 +51,7 @@ export function EngagementProcess() {
                   className="mt-6 h-px w-full bg-linear-to-r from-gold/30 via-cyan-glow/20 to-transparent"
                   aria-hidden
                 />
-                <p className="mt-5 text-xs text-muted">Executive-ready outputs</p>
+                <p className="mt-5 text-xs text-muted">Governance-ready deliverables</p>
                 {i < engagementSteps.length - 1 && (
                   <span
                     className="absolute -right-3 top-8 hidden h-2 w-2 rounded-full bg-gold/60 lg:block"

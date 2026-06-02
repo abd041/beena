@@ -18,8 +18,8 @@ export function LeadershipAdvisory() {
       <Container className="relative">
         <SectionHeader
           eyebrow="Leadership & advisory"
-          title="Senior advisors — not layered consulting teams"
-          description="Work directly with seasoned experts across ophthalmic science, global regulation, and commercialization — designed for decision speed and quality."
+          title="Senior advisors with ophthalmic operating experience"
+          description="Direct access to leaders across clinical development, global regulation, and commercialization — accountable for decisions, not slide volume."
           align="left"
         />
 

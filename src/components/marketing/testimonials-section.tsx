@@ -21,7 +21,7 @@ export function TestimonialsSection({
         isDark ? "lux-section-y-tight bg-black text-white" : "bg-white py-16 md:py-24",
       )}
     >
-      {isDark && <CinematicAtmosphere mood="deep" intensity="medium" particles />}
+      {isDark && <CinematicAtmosphere mood="deep" intensity="soft" vignette={false} />}
       <Container className="relative">
         <Reveal className={isDark ? "max-w-lg" : "mx-auto max-w-2xl text-center"}>
           <p className="lux-eyebrow">Client perspectives</p>
@@ -33,7 +33,7 @@ export function TestimonialsSection({
                 : "text-3xl text-neutral-900 md:text-4xl",
             )}
           >
-            Trusted by development leaders
+            What sponsors say
           </h2>
         </Reveal>
 
@@ -50,7 +50,7 @@ export function TestimonialsSection({
                 <blockquote
                   className={
                     isDark
-                      ? "font-serif text-[1.35rem] leading-[1.55] tracking-[-0.015em] text-white/85 md:text-[1.65rem] md:leading-[1.5]"
+                      ? "text-lg leading-[1.7] text-white/88 md:text-xl md:leading-[1.65]"
                       : "text-sm leading-relaxed text-neutral-800"
                   }
                 >

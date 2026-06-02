@@ -1,32 +1,32 @@
 export const trustHeadline =
-  "Trusted by ophthalmic innovators and development partners worldwide";
+  "Advisory relationships with ophthalmic sponsors, specialty pharma, and global biopharma";
 
 /** Placeholder partner categories until client provides logo assets */
 export const trustPartners = [
-  "Global Biopharma",
-  "Emerging Biotech",
-  "Specialty Pharma",
-  "Academic Medicine",
+  "Global biopharma",
+  "Emerging biotech",
+  "Specialty pharma",
+  "Academic medicine",
   "Investor & BD",
 ] as const;
 
 export const testimonials = [
   {
     quote:
-      "BEEÑA-E brought senior ophthalmic judgment when we needed to align regulatory, clinical, and launch teams under one coherent plan.",
+      "They helped us align regulatory, clinical, and medical affairs around one evidence narrative before launch — with clear owners and realistic timelines.",
     name: "VP, Development",
-    organization: "Top-20 Biopharma Sponsor",
+    organization: "Top-20 biopharma sponsor",
   },
   {
     quote:
-      "Their global perspective helped us prioritize indications and structure agency interactions that accelerated our path to Phase 2.",
+      "The team brought ophthalmic regulatory judgment to our Scientific Advice preparation. We entered Phase 2 with endpoints and CMC questions resolved — not deferred.",
     name: "Chief Medical Officer",
-    organization: "Emerging Ophthalmic Biotech",
+    organization: "Emerging ophthalmic biotech",
   },
   {
     quote:
-      "Practical, science-driven advice — not generic consulting slides. They understood our asset and our patients.",
+      "Practical, specific guidance on our asset and patient population — not generic templates. Their work stood up in board and investor discussions.",
     name: "Head of Regulatory",
-    organization: "Specialty Pharma",
+    organization: "Specialty pharma",
   },
 ] as const;

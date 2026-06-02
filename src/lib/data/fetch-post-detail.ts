@@ -25,7 +25,7 @@ export async function getPostBySlug(
     const { data, error } = await supabase
       .from("posts")
       .select(
-        "slug, title, excerpt, content, cover_image_url, published_at, read_time_min, categories(name)",
+        "slug, title, excerpt, content, cover_image_url, published_at, read_time_min, related_service_slug, categories(name)",
       )
       .eq("slug", slug)
       .eq("status", "published")
@@ -54,6 +54,9 @@ export async function getPostBySlug(
       imageGradient:
         staticFull?.imageGradient ?? gradients[0] ?? "from-forest to-forest-dark",
       imageUrl: data.cover_image_url ?? staticFull?.imageUrl,
+      relatedServiceSlug:
+        (data.related_service_slug as string | null) ??
+        staticFull?.relatedServiceSlug,
       content: data.content
         ? data.content.split("\n\n").filter(Boolean)
         : getStaticPostContent(slug),

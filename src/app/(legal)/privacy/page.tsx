@@ -1,6 +1,5 @@
-import { Container } from "@/components/layout/container";
-import { PageHeader } from "@/components/layout/page-header";
-import { Section } from "@/components/layout/section";
+import { InnerSection } from "@/components/layout/inner-section";
+import { PageHero } from "@/components/layout/page-hero";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
@@ -12,25 +11,33 @@ export const metadata = buildPageMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
         description="How we collect, use, and protect your information."
+        mood="neutral"
+        grade="neutral"
+        size="compact"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Privacy" },
+        ]}
       />
-      <Section variant="light">
-        <Container size="content">
-          <div className="prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-forest">
-            <p className="text-muted leading-relaxed">
-              Legal content will be provided by BEEÑA-E Consulting prior to
-              production launch. For privacy-related inquiries, contact{" "}
-              <a href="mailto:info@beena-e.com" className="font-semibold text-forest hover:text-gold">
-                info@beena-e.com
-              </a>
-              .
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <InnerSection variant="ivory" className="lux-section-y-tight pb-28">
+        <div className="lux-legal-prose">
+          <p>
+            Legal content will be provided by BEEÑA-E Consulting prior to production
+            launch. For privacy-related inquiries, contact{" "}
+            <a
+              href="mailto:info@beena-e.com"
+              className="font-medium text-forest transition-colors hover:text-gold"
+            >
+              info@beena-e.com
+            </a>
+            .
+          </p>
+        </div>
+      </InnerSection>
     </>
   );
 }

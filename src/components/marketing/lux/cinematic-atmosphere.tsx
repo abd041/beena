@@ -11,34 +11,37 @@ export type AtmosphereMood =
   | "statement"
   | "neutral";
 
+/** Layered backgrounds — `rich` adds optional motion/glow (homepage hero only). */
 export function CinematicAtmosphere({
   className,
-  intensity = "medium",
+  intensity = "soft",
   vignette = true,
   particles = false,
   mood = "warm",
+  rich = false,
 }: {
   className?: string;
   intensity?: "soft" | "medium" | "deep";
   vignette?: boolean;
   particles?: boolean;
   mood?: AtmosphereMood;
+  rich?: boolean;
 }) {
   const noiseOpacity =
-    intensity === "soft" ? "opacity-40" : intensity === "deep" ? "opacity-90" : "opacity-60";
+    intensity === "soft" ? "opacity-25" : intensity === "deep" ? "opacity-50" : "opacity-35";
 
   return (
     <div className={cn("pointer-events-none absolute inset-0", className)} aria-hidden>
       <div className={cn("lux-noise absolute inset-0", noiseOpacity)} />
       <div className={cn("absolute inset-0 lux-mood-base", `lux-mood-base--${mood}`)} />
-      <div className={cn("absolute inset-0 lux-mood-glow", `lux-mood-glow--${mood}`)} />
-      <div className="lux-fog-layer absolute inset-0 opacity-60" />
-      <div className="lux-gradient-radial absolute inset-0 opacity-80" />
-      <div className="lux-gradient-drift absolute inset-0 opacity-35" />
-      <div className="lux-bloom-top absolute inset-x-0 top-0 h-1/3" />
-      {vignette && <div className="lux-vignette absolute inset-0" />}
-      {vignette && <div className="lux-vignette-edge absolute inset-0" />}
-      {particles && <AmbientParticles density={mood === "stage" ? "high" : "low"} />}
+      {rich ? (
+        <>
+          <div className={cn("absolute inset-0 lux-mood-glow opacity-60", `lux-mood-glow--${mood}`)} />
+          <div className="lux-gradient-radial absolute inset-0 opacity-50" />
+        </>
+      ) : null}
+      {vignette ? <div className="lux-vignette absolute inset-0 opacity-70" /> : null}
+      {particles && rich ? <AmbientParticles density="low" /> : null}
     </div>
   );
 }

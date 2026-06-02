@@ -13,7 +13,7 @@ export const HOME_IMAGES = {
 export const heroCopy = {
   headline: "Global Ophthalmic Biotech Advisory & Development Partner",
   subheadline:
-    "Deep scientific insight meets purposeful execution. We deliver evidence-based strategies and bespoke solutions for ophthalmic biotech innovators worldwide.",
+    "Senior ophthalmic advisors supporting sponsors across development, regulatory strategy, market access, and commercialization — with disciplined execution and global reach.",
 };
 
 export const valueProps = [
@@ -60,7 +60,7 @@ export const homeStats = [
 ];
 
 export const aboutHomeCopy = {
-  body: "BEEÑA-E Consulting brings decades of ophthalmic biotech experience to sponsors worldwide — combining scientific rigor, global regulatory insight, and patient-centered strategies that accelerate meaningful outcomes for patients and partners alike.",
+  body: "BEEÑA-E Consulting supports ophthalmic sponsors with senior advisory across development, regulatory pathways, market access, and commercialization — grounded in scientific rigor and operational discipline.",
 };
 
 export const footerContact = {

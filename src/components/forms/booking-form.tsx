@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { submitBooking } from "@/app/actions/booking";
 import { initialBookingState } from "@/lib/validations/booking";
+import { FormFieldError, FormStatusMessage } from "@/components/forms/form-field-error";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,21 +11,12 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils/cn";
 
 const meetingTypes = [
-  "Discovery Call",
+  "Discovery call",
   "Consultation",
-  "Partnership Discussion",
-  "Project Scoping",
+  "Partnership discussion",
+  "Project scoping",
   "Other",
 ];
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p role="alert" className="mt-1 text-sm text-red-600">
-      {message}
-    </p>
-  );
-}
 
 export function BookingForm() {
   const [state, action, pending] = useActionState(
@@ -32,9 +24,14 @@ export function BookingForm() {
     initialBookingState,
   );
 
+  const errors = state.errors;
+
   return (
-    <form action={action} className="space-y-5">
-      <input type="text" name="website" tabIndex={-1} className="hidden" aria-hidden />
+    <form action={action} className="space-y-5" aria-busy={pending} noValidate>
+      <div className="sr-only" aria-hidden>
+        <label htmlFor="booking-website">Leave blank</label>
+        <input id="booking-website" type="text" name="website" tabIndex={-1} />
+      </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -46,8 +43,10 @@ export function BookingForm() {
             required
             disabled={pending}
             className="mt-1.5"
+            aria-invalid={Boolean(errors?.fullName)}
+            aria-describedby={errors?.fullName ? "fullName-error" : undefined}
           />
-          <FieldError message={state.errors?.fullName?.[0]} />
+          <FormFieldError id="fullName-error" message={errors?.fullName?.[0]} />
         </div>
         <div>
           <Label htmlFor="email">Email *</Label>
@@ -59,8 +58,10 @@ export function BookingForm() {
             required
             disabled={pending}
             className="mt-1.5"
+            aria-invalid={Boolean(errors?.email)}
+            aria-describedby={errors?.email ? "email-error" : undefined}
           />
-          <FieldError message={state.errors?.email?.[0]} />
+          <FormFieldError id="email-error" message={errors?.email?.[0]} />
         </div>
       </div>
 
@@ -82,7 +83,9 @@ export function BookingForm() {
           name="meetingType"
           required
           disabled={pending}
-          className="mt-1.5 h-12 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20"
+          aria-invalid={Boolean(errors?.meetingType)}
+          aria-describedby={errors?.meetingType ? "meetingType-error" : undefined}
+          className="mt-1.5 h-12 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 focus-visible:border-forest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest/20"
           defaultValue=""
         >
           <option value="" disabled>
@@ -94,7 +97,7 @@ export function BookingForm() {
             </option>
           ))}
         </select>
-        <FieldError message={state.errors?.meetingType?.[0]} />
+        <FormFieldError id="meetingType-error" message={errors?.meetingType?.[0]} />
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -123,28 +126,32 @@ export function BookingForm() {
       </div>
 
       <div>
-        <Label htmlFor="message">Additional details</Label>
-        <Textarea id="message" name="message" variant="light" disabled={pending} className="mt-1.5" />
+        <Label htmlFor="message">Program context</Label>
+        <Textarea
+          id="message"
+          name="message"
+          variant="light"
+          disabled={pending}
+          placeholder="Brief overview of your asset, stage, and objectives (optional)."
+          className="mt-1.5"
+        />
       </div>
+
+      <p className="text-xs leading-relaxed text-muted">
+        Consultation requests are reviewed confidentially. We confirm scheduling
+        by email, typically within one business day.
+      </p>
 
       <button
         type="submit"
         disabled={pending}
         className={cn(buttonVariants({ variant: "dark", size: "lg" }))}
       >
-        {pending ? "Submitting…" : "Request Consultation"}
+        {pending ? "Submitting…" : "Request consultation"}
       </button>
 
       {state.message ? (
-        <p
-          role="status"
-          className={cn(
-            "text-sm font-medium",
-            state.success ? "text-forest" : "text-red-600",
-          )}
-        >
-          {state.message}
-        </p>
+        <FormStatusMessage success={Boolean(state.success)} message={state.message} />
       ) : null}
     </form>
   );

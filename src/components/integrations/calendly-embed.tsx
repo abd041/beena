@@ -1,42 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
+import Script from "next/script";
 
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget: (options: {
-        url: string;
-        parentElement: HTMLElement | null;
-      }) => void;
-    };
-  }
-}
-
+/**
+ * Calendly inline widget — uses official data-url + calendly-inline-widget class
+ * with explicit height so the calendar is not clipped.
+ */
 export function CalendlyEmbed({ url }: { url: string }) {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      const el = document.getElementById("calendly-inline-widget");
-      if (el && window.Calendly) {
-        window.Calendly.initInlineWidget({ url, parentElement: el });
-      }
-    };
-
-    return () => {
-      script.remove();
-    };
-  }, [url]);
-
   return (
-    <div
-      id="calendly-inline-widget"
-      className="min-h-[650px] w-full rounded-xl border border-neutral-200 bg-white"
-      aria-label="Schedule a meeting with Calendly"
-    />
+    <>
+      <div
+        className="calendly-inline-widget w-full bg-white"
+        data-url={url}
+        style={{ minWidth: 320, height: 700, minHeight: 700 }}
+        aria-label="Schedule a meeting with Calendly"
+      />
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
+    </>
   );
 }

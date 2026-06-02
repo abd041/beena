@@ -26,7 +26,7 @@ function WorldMap({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[2rem] bg-black/50 shadow-[0_56px_160px_rgba(0,0,0,0.65)] backdrop-blur-xl",
+        "relative overflow-hidden rounded-[2rem] border border-white/[0.06] bg-black/40 shadow-[0_32px_80px_rgba(0,0,0,0.45)]",
         featured && "lux-map-stage",
         className,
       )}
@@ -45,7 +45,7 @@ function WorldMap({
       >
         <defs>
           <radialGradient id={`glow-${uid}`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(70,242,213,0.5)" />
+            <stop offset="0%" stopColor="rgba(70,242,213,0.25)" />
             <stop offset="100%" stopColor="rgba(70,242,213,0)" />
           </radialGradient>
           <linearGradient id={`line-${uid}`} x1="0" y1="0" x2="1" y2="1">
@@ -84,8 +84,6 @@ function WorldMap({
             fill="none"
             strokeDasharray="3 5"
             filter={`url(#blur-${uid})`}
-            className={featured ? "animate-[lux-line-flow_14s_ease-in-out_infinite]" : undefined}
-            style={{ animationDelay: `${i * 1.5}s` }}
           />
         ))}
 
@@ -96,8 +94,6 @@ function WorldMap({
               cy={r.y}
               r={featured ? "8" : "5.5"}
               fill={`url(#glow-${uid})`}
-              className="animate-[lux-bloom-breathe_5s_ease-in-out_infinite]"
-              style={{ animationDelay: `${i * 0.6}s` }}
             />
             <circle cx={r.x} cy={r.y} r="0.9" fill="rgba(255,255,255,0.95)" />
           </g>
@@ -116,7 +112,7 @@ export function GlobalNetwork({
     <section
       className={cn(
         "relative overflow-hidden bg-black text-white",
-        featured ? "py-32 md:py-48 lg:py-56" : "py-16 md:py-24",
+        featured ? "lux-section-y-tight" : "py-16 md:py-24",
       )}
     >
       <CinematicImage
@@ -126,12 +122,7 @@ export function GlobalNetwork({
         sizes="100vw"
         grade="deep"
       />
-      <CinematicAtmosphere
-        mood="stage"
-        intensity="deep"
-        particles={featured}
-        vignette
-      />
+      <CinematicAtmosphere mood="neutral" intensity="soft" vignette />
 
       <Container className="relative">
         <Reveal className={cn("max-w-3xl", featured && "mx-auto text-center")}>
@@ -144,25 +135,26 @@ export function GlobalNetwork({
                 : "text-3xl md:text-4xl",
             )}
           >
-            A global biotech network
+            Global advisory coverage
             {featured && (
               <>
                 <br />
-                <span className="text-white/55">for ophthalmic execution</span>
+                <span className="text-white/65">across major markets</span>
               </>
             )}
-            {!featured && " for ophthalmic execution"}
+            {!featured && " across major markets"}
           </h2>
           <p
             className={cn(
-              "mt-8 leading-[1.85] text-white/55",
+              "mt-8 leading-[1.8] text-white/72",
               featured
                 ? "mx-auto max-w-lg text-[0.95rem] md:text-lg"
                 : "lux-prose-narrow text-base md:text-lg",
             )}
           >
-            United States, Europe, MENA, APAC, and emerging markets — connected
-            through partners built for ophthalmology.
+            United States, Europe, MENA, APAC, and select emerging markets —
+            supported through established CRO, regulatory, and commercial
+            partners with ophthalmic depth.
           </p>
         </Reveal>
 

@@ -1,5 +1,9 @@
 # Deployment checklist (Netlify + Squarespace DNS)
 
+## Content operations
+
+Before editors publish in production, apply `supabase/migrations/20260531000006_content_governance.sql` and share [`docs/content-operations/README.md`](./content-operations/README.md) with the team.
+
 ## Pre-launch
 
 - [ ] All Supabase migrations applied on **production** project

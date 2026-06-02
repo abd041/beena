@@ -3,20 +3,12 @@
 import { useActionState } from "react";
 import { submitContact } from "@/app/actions/contact";
 import { initialContactState } from "@/lib/validations/contact";
+import { FormFieldError, FormStatusMessage } from "@/components/forms/form-field-error";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils/cn";
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p role="alert" className="mt-1 text-sm text-red-600">
-      {message}
-    </p>
-  );
-}
 
 export function ContactForm({
   defaultSubject = "",
@@ -30,16 +22,20 @@ export function ContactForm({
     initialContactState,
   );
 
+  const errors = state.errors;
+
   return (
-    <form action={action} className="space-y-5">
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-        aria-hidden
-      />
+    <form action={action} className="space-y-5" aria-busy={pending} noValidate>
+      <div className="sr-only" aria-hidden>
+        <label htmlFor="website">Leave blank</label>
+        <input
+          id="website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -51,8 +47,10 @@ export function ContactForm({
             required
             disabled={pending}
             className="mt-1.5"
+            aria-invalid={Boolean(errors?.name)}
+            aria-describedby={errors?.name ? "name-error" : undefined}
           />
-          <FieldError message={state.errors?.name?.[0]} />
+          <FormFieldError id="name-error" message={errors?.name?.[0]} />
         </div>
         <div>
           <Label htmlFor="email">Email *</Label>
@@ -64,8 +62,10 @@ export function ContactForm({
             required
             disabled={pending}
             className="mt-1.5"
+            aria-invalid={Boolean(errors?.email)}
+            aria-describedby={errors?.email ? "email-error" : undefined}
           />
-          <FieldError message={state.errors?.email?.[0]} />
+          <FormFieldError id="email-error" message={errors?.email?.[0]} />
         </div>
       </div>
 
@@ -103,8 +103,10 @@ export function ContactForm({
           disabled={pending}
           defaultValue={defaultSubject}
           className="mt-1.5"
+          aria-invalid={Boolean(errors?.subject)}
+          aria-describedby={errors?.subject ? "subject-error" : undefined}
         />
-        <FieldError message={state.errors?.subject?.[0]} />
+        <FormFieldError id="subject-error" message={errors?.subject?.[0]} />
       </div>
 
       <div>
@@ -117,28 +119,27 @@ export function ContactForm({
           disabled={pending}
           defaultValue={defaultMessage}
           className="mt-1.5"
+          aria-invalid={Boolean(errors?.message)}
+          aria-describedby={errors?.message ? "message-error" : undefined}
         />
-        <FieldError message={state.errors?.message?.[0]} />
+        <FormFieldError id="message-error" message={errors?.message?.[0]} />
       </div>
+
+      <p className="text-xs leading-relaxed text-muted">
+        Information submitted through this form is handled confidentially. We
+        typically respond within one business day.
+      </p>
 
       <button
         type="submit"
         disabled={pending}
         className={cn(buttonVariants({ variant: "dark", size: "lg" }))}
       >
-        {pending ? "Sending…" : "Send Message"}
+        {pending ? "Sending…" : "Send message"}
       </button>
 
       {state.message ? (
-        <p
-          role="status"
-          className={cn(
-            "text-sm font-medium",
-            state.success ? "text-forest" : "text-red-600",
-          )}
-        >
-          {state.message}
-        </p>
+        <FormStatusMessage success={Boolean(state.success)} message={state.message} />
       ) : null}
     </form>
   );

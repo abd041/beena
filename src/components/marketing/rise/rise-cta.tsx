@@ -10,15 +10,15 @@ import { cn } from "@/lib/utils/cn";
 
 export function RiseCta() {
   return (
-    <section className="bg-rise-green py-16 md:py-20">
+    <section className="relative overflow-hidden bg-rise-green py-24 md:py-32">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <Reveal className="group relative aspect-4/3 overflow-hidden rounded-[1.75rem] shadow-[0_32px_90px_rgba(0,0,0,0.2)]">
             <Image
               src={RISE_IMAGES.healthcare}
               alt="Healthcare team collaborating on patient care initiatives"
               fill
-              className="object-cover"
+              className="lux-image-grade object-cover transition-transform duration-[1s] [@media(hover:hover)]:group-hover:scale-[1.03] motion-reduce:transition-none"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </Reveal>

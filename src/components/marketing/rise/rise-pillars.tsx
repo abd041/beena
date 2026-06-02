@@ -20,7 +20,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function RisePillars() {
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section className="bg-ivory py-24 md:py-32">
       <Container>
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">
@@ -36,7 +36,7 @@ export function RisePillars() {
             return (
               <li key={pillar.title}>
                 <Reveal delay={i * 0.06} className="h-full">
-                  <div className="h-full rounded-xl border border-rise-green/15 bg-neutral-50 p-8 transition-shadow hover:shadow-md">
+                  <div className="lux-glass-light card-hover-lift h-full p-8 md:p-10">
                     <Icon
                       className="h-9 w-9 text-rise-green stroke-[1.25]"
                       aria-hidden

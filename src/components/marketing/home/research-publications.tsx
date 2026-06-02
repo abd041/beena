@@ -29,7 +29,7 @@ export function ResearchPublications() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeader
             eyebrow="Research & publications"
-            title="Elite biotech thought leadership"
+            title="Ophthalmic industry perspectives"
             description="Executive-grade perspectives across whitepapers, regulatory intelligence, market outlooks, and clinical innovation."
             align="left"
           />

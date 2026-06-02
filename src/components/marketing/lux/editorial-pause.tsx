@@ -12,20 +12,19 @@ export function EditorialPause({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-ivory py-24 md:py-36 lg:py-44",
+        "relative overflow-hidden border-y border-neutral-200/80 bg-ivory py-20 md:py-28 lg:py-32",
         className,
       )}
     >
-      <div className="lux-editorial-haze pointer-events-none absolute inset-0" aria-hidden />
-      <div className="lux-editorial-glow pointer-events-none absolute inset-0" aria-hidden />
       <Container className="relative">
-        <Reveal className="mx-auto max-w-3xl px-4 text-center">
-          <p className="font-serif text-[1.65rem] leading-[1.45] tracking-[-0.03em] text-forest/90 md:text-4xl md:leading-[1.35] lg:text-[2.75rem]">
-            Scientific precision.
-            <br />
-            <span className="text-forest/45">Strategic clarity.</span>
-            <br />
-            <span className="text-forest/75">Better outcomes.</span>
+        <Reveal className="mx-auto max-w-2xl px-4 text-center">
+          <p className="font-serif text-2xl leading-[1.45] tracking-[-0.02em] text-forest md:text-3xl md:leading-[1.4]">
+            Evidence-led advisory for ophthalmic development, regulatory
+            strategy, and commercialization.
+          </p>
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-muted md:text-base">
+            Senior consultants aligned to sponsor governance, agency dialogue,
+            and patient-relevant endpoints.
           </p>
         </Reveal>
       </Container>

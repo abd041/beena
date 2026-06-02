@@ -1,30 +1,27 @@
-import { Container } from "@/components/layout/container";
-import { Section } from "@/components/layout/section";
+import { PageHero } from "@/components/layout/page-hero";
+import { STOCK_IMAGES } from "@/lib/data/stock-images";
 
+/** @deprecated Prefer PageHero with explicit image — kept for gradual migration */
 export function PageHeader({
   eyebrow,
   title,
   description,
+  imageSrc = STOCK_IMAGES.portfolioLab,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
+  imageSrc?: string;
 }) {
   return (
-    <Section variant="forest" padding="compact" className="pt-28 md:pt-32">
-      <Container size="content" className="text-center md:text-left">
-        {eyebrow ? (
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            {eyebrow}
-          </p>
-        ) : null}
-        <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl">{title}</h1>
-        {description ? (
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            {description}
-          </p>
-        ) : null}
-      </Container>
-    </Section>
+    <PageHero
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      imageSrc={imageSrc}
+      mood="warm"
+      grade="neutral"
+      size="default"
+    />
   );
 }

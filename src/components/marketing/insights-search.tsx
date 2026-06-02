@@ -12,7 +12,7 @@ export function InsightsSearch({ defaultValue = "" }: { defaultValue?: string })
 
   return (
     <form
-      className="relative mb-8 max-w-md"
+      className="relative mb-10 max-w-lg"
       onSubmit={(e) => {
         e.preventDefault();
         const q = new FormData(e.currentTarget).get("q") as string;
@@ -28,17 +28,17 @@ export function InsightsSearch({ defaultValue = "" }: { defaultValue?: string })
         Search insights
       </label>
       <Search
-        className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+        className="pointer-events-none absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted/70"
         aria-hidden
       />
       <Input
         id="insights-search"
         name="q"
         variant="light"
-        placeholder="Search articles…"
+        placeholder="Search perspectives…"
         defaultValue={defaultValue}
         disabled={pending}
-        className="pl-11"
+        className="h-14 rounded-2xl border-neutral-200/50 pl-12 text-base shadow-[0_12px_40px_rgba(11,28,22,0.04)]"
         aria-busy={pending}
       />
     </form>

@@ -16,52 +16,47 @@ export function PremiumFinalCta() {
 
   const content = (
     <div className="max-w-4xl px-2">
-      <p className="lux-eyebrow tracking-[0.32em]">Partner with confidence</p>
-      <h2 className="mt-8 font-serif text-[2rem] leading-[1.06] tracking-[-0.035em] text-white md:text-6xl lg:text-[4.5rem]">
-        Ready to accelerate your
-        <br className="hidden md:block" />
-        <span className="text-white/70"> ophthalmic innovation pipeline?</span>
+      <p className="lux-eyebrow">Engagement</p>
+      <h2 className="mt-6 font-serif text-3xl leading-[1.12] tracking-[-0.02em] text-white md:text-4xl lg:text-[2.75rem]">
+        Discuss your ophthalmic program with senior advisors
       </h2>
-      <p className="mx-auto mt-10 max-w-md text-[0.95rem] leading-[1.9] text-white/55 md:mt-12 md:max-w-lg md:text-lg">
-        Align science, regulation, access, and launch with senior advisors built
-        for executive decision-making.
+      <p className="mx-auto mt-6 max-w-lg text-[0.95rem] leading-[1.8] text-white/75 md:text-base">
+        Confidential consultations for development, regulatory, access, and
+        commercialization planning.
       </p>
-      <div className="mt-14 flex flex-col justify-center gap-5 sm:flex-row sm:items-center md:mt-16">
+      <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
         <Link
           href="/book"
-          className={cn(
-            buttonVariants({ variant: "primary", size: "lg" }),
-            "min-w-[260px] transition-[box-shadow,transform] duration-700 ease-out shadow-[0_28px_80px_rgba(247,195,95,0.2)] hover:shadow-[0_32px_96px_rgba(247,195,95,0.28)] active:scale-[0.99]",
-          )}
+          className={cn(buttonVariants({ variant: "primary", size: "lg" }), "min-w-[240px]")}
         >
           <Calendar className="mr-2 h-4 w-4" aria-hidden />
-          Schedule a Consultation →
+          Schedule a Consultation
         </Link>
         <Link
           href="/contact"
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "lg" }),
-            "min-w-[220px] border-white/12 bg-white/[0.03] backdrop-blur-md transition-colors duration-500 hover:bg-white/[0.06]",
-          )}
+          className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "min-w-[200px]")}
         >
           Contact Our Team
         </Link>
       </div>
+      <p className="mx-auto mt-8 max-w-md text-xs leading-relaxed text-white/45">
+        NDA-first engagement. Client references available upon request.
+      </p>
     </div>
   );
 
   return (
-    <section className="relative min-h-[88vh] overflow-hidden bg-black text-white md:min-h-[92vh]">
+    <section className="relative min-h-[72vh] overflow-hidden bg-black text-white md:min-h-[78vh]">
       <CinematicImage
         src={STOCK_IMAGES.portfolioLab}
         alt=""
         fill
         sizes="100vw"
-        grade="deep"
+        grade="neutral"
       />
-      <CinematicAtmosphere mood="stage" intensity="deep" particles vignette />
+      <CinematicAtmosphere mood="warm" intensity="soft" vignette />
 
-      <Container className="relative flex min-h-[88vh] flex-col items-center justify-center py-32 text-center md:min-h-[92vh] md:py-44">
+      <Container className="relative flex min-h-[72vh] flex-col items-center justify-center py-24 text-center md:min-h-[78vh] md:py-32">
         {reduced ? (
           content
         ) : (
@@ -69,7 +64,7 @@ export function PremiumFinalCta() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             {content}
           </motion.div>

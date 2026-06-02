@@ -11,12 +11,19 @@ export function ImageUpload({
   name = "coverImageUrl",
   defaultUrl = "",
   label = "Cover image URL",
+  onChange,
 }: {
   name?: string;
   defaultUrl?: string;
   label?: string;
+  onChange?: (url: string) => void;
 }) {
   const [url, setUrl] = useState(defaultUrl);
+
+  function updateUrl(next: string) {
+    setUrl(next);
+    onChange?.(next);
+  }
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,7 +46,7 @@ export function ImageUpload({
     }
 
     const { data } = supabase.storage.from("media").getPublicUrl(path);
-    setUrl(data.publicUrl);
+    updateUrl(data.publicUrl);
     setUploading(false);
   }
 
@@ -51,7 +58,7 @@ export function ImageUpload({
         id={name}
         variant="light"
         value={url}
-        onChange={(e) => setUrl(e.target.value)}
+        onChange={(e) => updateUrl(e.target.value)}
         placeholder="https://... or upload below"
         readOnly={uploading}
       />

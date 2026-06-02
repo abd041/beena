@@ -10,7 +10,7 @@
   --ivory: #f7f6f3;
   --neutral-50: #f7f6f3;
   --neutral-900: #1a1a1a;
-  --muted: #5c6470;
+  --muted: #4f5866;
   --background: #ffffff;
   --foreground: var(--neutral-900);
   --rise-green: #014421;
@@ -68,15 +68,15 @@ body {
 
 @layer utilities {
   .lux-section-y {
-    @apply py-28 md:py-36 lg:py-44;
-  }
-
-  .lux-section-y-tight {
     @apply py-24 md:py-32 lg:py-40;
   }
 
+  .lux-section-y-tight {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+
   .lux-eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-gold/85;
+    @apply text-[11px] font-medium uppercase tracking-[0.22em] text-gold/90;
   }
 
   .lux-heading {
@@ -88,7 +88,7 @@ body {
   }
 
   .lux-body {
-    @apply text-base leading-[1.75] text-white/72 md:text-lg md:leading-[1.8];
+    @apply text-base leading-[1.75] text-white/80 md:text-lg md:leading-[1.8];
   }
 
   .lux-body-muted {
@@ -121,11 +121,11 @@ body {
   }
 
   .lux-glass {
-    @apply rounded-[1.75rem] border border-transparent bg-white/[0.03] shadow-[0_40px_120px_rgba(0,0,0,0.28)] backdrop-blur-2xl;
+    @apply rounded-[1.75rem] border border-white/[0.06] bg-white/[0.04] shadow-[0_24px_64px_rgba(0,0,0,0.2)];
   }
 
   .lux-glass-light {
-    @apply rounded-[1.75rem] border border-transparent bg-white/92 shadow-[0_28px_90px_rgba(11,28,22,0.07)] backdrop-blur-md;
+    @apply rounded-[1.75rem] border border-neutral-200/60 bg-white shadow-[0_16px_48px_rgba(11,28,22,0.06)];
   }
 
   .lux-ring {
@@ -156,7 +156,7 @@ body {
   .lux-gradient-radial {
     background: radial-gradient(
       ellipse 90% 70% at 50% -10%,
-      rgba(70, 242, 213, 0.08),
+      rgba(70, 242, 213, 0.04),
       transparent 65%
     );
   }
@@ -190,13 +190,13 @@ body {
   .lux-vignette {
     background: radial-gradient(
       ellipse 130% 110% at 50% 50%,
-      transparent 35%,
-      rgba(7, 20, 16, 0.62) 100%
+      transparent 45%,
+      rgba(7, 20, 16, 0.42) 100%
     );
   }
 
   .lux-vignette-edge {
-    box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.45);
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.28);
   }
 
   .lux-fog-layer {
@@ -325,79 +325,66 @@ body {
   }
 
   .lux-image-grade {
-    filter: saturate(0.55) contrast(1.08) brightness(0.78);
-    transform: scale(1.02);
+    filter: saturate(0.88) contrast(1.03) brightness(0.9);
   }
 
   .lux-image-overlay {
     mix-blend-mode: multiply;
-    opacity: 0.5;
   }
 
   .lux-image-overlay--warm {
     background: linear-gradient(
       145deg,
-      rgba(11, 28, 22, 0.75) 0%,
-      rgba(15, 42, 34, 0.55) 50%,
-      rgba(7, 20, 16, 0.8) 100%
+      rgba(11, 28, 22, 0.45) 0%,
+      rgba(15, 42, 34, 0.3) 50%,
+      rgba(7, 20, 16, 0.5) 100%
     );
   }
 
   .lux-image-overlay--cool {
     background: linear-gradient(
       180deg,
-      rgba(4, 14, 12, 0.7) 0%,
-      rgba(11, 28, 22, 0.5) 100%
+      rgba(4, 14, 12, 0.4) 0%,
+      rgba(11, 28, 22, 0.28) 100%
     );
   }
 
   .lux-image-overlay--neutral {
     background: linear-gradient(
       180deg,
-      rgba(7, 20, 16, 0.65) 0%,
-      rgba(11, 28, 22, 0.45) 100%
+      rgba(7, 20, 16, 0.38) 0%,
+      rgba(11, 28, 22, 0.25) 100%
     );
   }
 
   .lux-image-overlay--deep {
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(11, 28, 22, 0.6) 100%
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(11, 28, 22, 0.4) 100%
     );
   }
 
   .lux-image-vignette {
     background: radial-gradient(
       ellipse 110% 100% at 50% 50%,
-      transparent 30%,
-      rgba(0, 0, 0, 0.55) 100%
+      transparent 40%,
+      rgba(0, 0, 0, 0.35) 100%
     );
-  }
-
-  .lux-image-haze {
-    background: linear-gradient(
-      to top,
-      rgba(7, 20, 16, 0.65) 0%,
-      transparent 45%
-    );
-    opacity: 0.85;
   }
 
   .lux-map-stage {
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.04),
-      0 64px 180px rgba(0, 0, 0, 0.7),
-      0 0 80px rgba(70, 242, 213, 0.06);
+      0 32px 80px rgba(0, 0, 0, 0.45);
   }
 
   .lux-map-bloom {
     background: radial-gradient(
       ellipse 70% 60% at 50% 45%,
-      rgba(70, 242, 213, 0.12),
+      rgba(70, 242, 213, 0.05),
       transparent 65%
     );
-    animation: lux-bloom-breathe 10s ease-in-out infinite;
   }
 
   .lux-divider {
@@ -406,6 +393,38 @@ body {
 
   .lux-stat-value {
     @apply font-serif tabular-nums tracking-[-0.03em] text-white;
+  }
+
+  .lux-prose {
+    @apply mx-auto max-w-[42rem];
+  }
+
+  .lux-prose p {
+    @apply mb-8 text-[1.05rem] leading-[1.9] text-muted/95 last:mb-0;
+  }
+
+  .lux-prose h2 {
+    @apply mb-5 mt-14 font-serif text-2xl tracking-[-0.02em] text-forest first:mt-0;
+  }
+
+  .lux-legal-prose {
+    @apply mx-auto max-w-[40rem] space-y-6 text-[0.95rem] leading-[1.85] text-muted;
+  }
+
+  .lux-legal-prose h2 {
+    @apply mt-12 font-serif text-xl tracking-[-0.02em] text-neutral-900 first:mt-0;
+  }
+
+  .lux-faq {
+    @apply divide-y divide-neutral-200/80 overflow-hidden rounded-[1.75rem] border border-transparent bg-white/80 shadow-[0_24px_80px_rgba(11,28,22,0.06)] backdrop-blur-sm;
+  }
+
+  .lux-sidebar-panel {
+    @apply rounded-[1.75rem] border border-neutral-200/60 bg-white p-8 shadow-[0_16px_48px_rgba(11,28,22,0.06)] lg:sticky lg:top-28;
+  }
+
+  .lux-focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
   }
 
   .lux-read-bar {
@@ -489,6 +508,23 @@ body {
   }
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+  /* Calendly inline embed — iframe must match parent height */
+  .calendly-inline-widget,
+  .calendly-inline-widget iframe {
+    width: 100% !important;
+    min-height: 700px;
+    height: 700px !important;
+  }
+
 @media (prefers-reduced-motion: reduce) {
   .lux-gradient-drift,
   .lux-bloom-top,
@@ -496,8 +532,14 @@ body {
   .lux-map-bloom,
   .animate-lux-float,
   .lux-editorial-haze,
+  .lux-editorial-glow,
+  .lux-noise,
   [class*="lux-line-flow"] {
     animation: none !important;
+  }
+
+  .lux-noise {
+    opacity: 0.15 !important;
   }
 
   .card-hover-lift:hover {

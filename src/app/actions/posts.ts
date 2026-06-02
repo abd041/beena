@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import {
+  getPublishGovernanceErrors,
   initialPostState,
   postSchema,
   type PostActionState,
@@ -22,7 +23,24 @@ function parsePostForm(formData: FormData) {
     readTimeMin: formData.get("readTimeMin") || undefined,
     metaTitle: formData.get("metaTitle") || undefined,
     metaDescription: formData.get("metaDescription") || undefined,
+    relatedServiceSlug: formData.get("relatedServiceSlug") || "",
   });
+}
+
+function rejectIfGovernanceFails(
+  data: ReturnType<typeof postSchema.parse>,
+): PostActionState | null {
+  if (data.status !== "published") return null;
+
+  const governance = getPublishGovernanceErrors(data);
+  if (governance.length > 0) {
+    return {
+      success: false,
+      message: "Publishing blocked by editorial standards. Resolve issues in Publish readiness.",
+      governance,
+    };
+  }
+  return null;
 }
 
 function buildPostRow(data: ReturnType<typeof postSchema.parse>) {
@@ -38,6 +56,7 @@ function buildPostRow(data: ReturnType<typeof postSchema.parse>) {
     read_time_min: data.readTimeMin ?? estimateReadTime(data.content),
     meta_title: data.metaTitle || data.title,
     meta_description: data.metaDescription || data.excerpt,
+    related_service_slug: data.relatedServiceSlug || null,
     published_at:
       data.status === "published" ? now : null,
     updated_at: now,
@@ -56,6 +75,9 @@ export async function createPost(
       errors: parsed.error.flatten().fieldErrors,
     };
   }
+
+  const governanceBlock = rejectIfGovernanceFails(parsed.data);
+  if (governanceBlock) return governanceBlock;
 
   const { supabase } = await requireAdmin();
   const row = buildPostRow(parsed.data);
@@ -91,6 +113,9 @@ export async function updatePost(
       errors: parsed.error.flatten().fieldErrors,
     };
   }
+
+  const governanceBlock = rejectIfGovernanceFails(parsed.data);
+  if (governanceBlock) return governanceBlock;
 
   const { supabase } = await requireAdmin();
 

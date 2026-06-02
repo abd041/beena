@@ -10,12 +10,16 @@ export function StickyMobileCta({
   label?: string;
 }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 p-3 backdrop-blur-md md:hidden">
+    <div
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"
+      role="region"
+      aria-label="Quick action"
+    >
       <Link
         href={href}
         className={cn(
           buttonVariants({ variant: "dark", size: "lg" }),
-          "w-full justify-center shadow-lg",
+          "w-full justify-center",
         )}
       >
         {label}

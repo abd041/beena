@@ -14,37 +14,37 @@ export const whyChoose = [
   {
     title: "Ophthalmic specialization",
     description:
-      "Deep, category-specific expertise across retina, cornea, and rare ophthalmic disorders — not generalist consulting.",
+      "Category depth across retina, cornea, glaucoma, and rare ophthalmic disease — informed by precedent trials, imaging standards, and specialty care pathways, not generalist life-sciences consulting.",
     icon: Microscope,
   },
   {
     title: "Global regulatory expertise",
     description:
-      "FDA, EMA, and key regional pathways mapped early to reduce friction and prevent late-stage surprises.",
+      "FDA, EMA, and selected regional pathways mapped with ophthalmic-specific precedents — briefing strategy, endpoint acceptability, and combination-product considerations included from the outset.",
     icon: BadgeCheck,
   },
   {
-    title: "Science + commercial alignment",
+    title: "Science and commercial alignment",
     description:
-      "Translating mechanism and evidence into narratives that resonate with physicians, payers, and partners.",
+      "Mechanism, clinical evidence, and development constraints translated into positioning, payer-relevant narratives, and partner-ready materials that internal teams can execute.",
     icon: Sparkles,
   },
   {
-    title: "Faster strategic execution",
+    title: "Disciplined execution",
     description:
-      "Senior-level direction with practical deliverables that move programs forward—without layered bureaucracy.",
+      "Senior advisors deliver governance-ready outputs on defined timelines — integrated with your R&D, regulatory, and commercial leads rather than parallel workstreams.",
     icon: Clock,
   },
   {
     title: "Senior advisory model",
     description:
-      "Work directly with seasoned experts; concise governance, clear accountability, and board-ready outputs.",
+      "Direct access to experienced operators; clear accountability, concise governance, and materials suitable for boards, investors, and agency interactions.",
     icon: HeartHandshake,
   },
   {
     title: "Patient-centered outcomes",
     description:
-      "Every recommendation ties back to meaningful endpoints and real-world impact for patients and caregivers.",
+      "Recommendations anchored to functional vision endpoints, treatment burden, and real-world implications for patients and treating specialists.",
     icon: Target,
   },
 ] as const;
@@ -72,25 +72,25 @@ export const expertiseHome = [
     title: "Retina therapeutics",
     icon: Activity,
     description:
-      "Endpoint strategy, imaging, and evidence generation for complex retinal programs.",
+      "Endpoint hierarchies, imaging governance, and trial operations for diabetic retinopathy, AMD, and retinal vein occlusion programs.",
   },
   {
     title: "Gene therapy",
     icon: Sparkles,
     description:
-      "Vector strategy, long-term follow-up, and access models for transformative modalities.",
+      "Indication sequencing, long-term follow-up planning, and access implications for subretinal and intravitreal gene-based therapies.",
   },
   {
     title: "Clinical development",
     icon: GraduationCap,
     description:
-      "Trial architecture and operational planning designed for fundable, executable studies.",
+      "Protocol design, enrollment risk mitigation, and CRO oversight for multi-regional ophthalmic trials.",
   },
   {
     title: "Commercialization readiness",
     icon: HeartHandshake,
     description:
-      "Launch governance, medical affairs alignment, and lifecycle strategy for first-in-class assets.",
+      "Launch governance, medical affairs alignment, and lifecycle planning for specialty-administered ophthalmic therapies.",
   },
 ] as const;
 
@@ -106,27 +106,27 @@ export const engagementSteps = [
   {
     title: "Strategic assessment",
     description:
-      "Rapid program review to identify highest-leverage decisions across development, evidence, and positioning.",
+      "Structured review of program stage, competitive context, and highest-leverage decisions across development, evidence, and positioning.",
   },
   {
     title: "Regulatory alignment",
     description:
-      "Pathway mapping, agency interaction planning, and endpoint strategy aligned to ophthalmic precedents.",
+      "Pathway mapping, agency interaction planning, and endpoint strategy grounded in ophthalmic regulatory precedent.",
   },
   {
     title: "Clinical planning",
     description:
-      "Trial architecture, operational planning, and risk mitigation to keep programs fundable and executable.",
+      "Trial architecture, imaging and biomarker strategy, and operational planning to keep studies executable and defensible.",
   },
   {
     title: "Market access strategy",
     description:
-      "Evidence plans and value narratives aligned to payer and HTA expectations across key geographies.",
+      "Evidence plans and value narratives aligned to US payer policy and major HTA requirements.",
   },
   {
     title: "Commercialization support",
     description:
-      "Launch readiness, medical affairs alignment, and lifecycle strategy for first-in-class assets.",
+      "Launch readiness, medical affairs coordination, and lifecycle planning for first and follow-on indications.",
   },
 ] as const;
 
@@ -135,19 +135,22 @@ export const leadership = [
     name: "Senior Ophthalmic Advisor",
     role: "Clinical & Translational Strategy",
     years: "25+ years",
-    focus: "Retina, endpoints, imaging, and evidence generation",
+    focus:
+      "Retina development, imaging endpoints, and evidence generation for pivotal trials and label strategy",
   },
   {
     name: "Regulatory Lead",
     role: "Global Pathway & Agency Strategy",
     years: "20+ years",
-    focus: "FDA/EMA alignment, briefing packages, interaction planning",
+    focus:
+      "FDA and EMA interactions, briefing packages, and combination-product pathways in ophthalmology",
   },
   {
     name: "Commercial & Access Partner",
     role: "Value, Access, and Launch Readiness",
     years: "18+ years",
-    focus: "HEOR narrative, payer strategy, launch governance",
+    focus:
+      "HEOR framing, payer engagement, launch governance, and post-approval lifecycle planning",
   },
 ] as const;
 
@@ -155,7 +158,7 @@ export const impactMetrics = [
   {
     value: 14,
     suffix: "",
-    label: "Ophthalmic products launched globally",
+    label: "Ophthalmic products supported through global launch",
     icon: "package" as const,
   },
   {
@@ -173,7 +176,7 @@ export const impactMetrics = [
   {
     value: 25,
     suffix: "+",
-    label: "Markets reached across major regions",
+    label: "Markets addressed across major regions",
     icon: "globe" as const,
   },
   {
@@ -196,31 +199,31 @@ export const publicationTypes = [
   {
     title: "Whitepapers",
     description:
-      "Deep-dive perspectives on ophthalmic development strategy and evidence design.",
+      "Structured analyses of ophthalmic development strategy, evidence design, and portfolio trade-offs.",
     category: "Research",
   },
   {
     title: "Regulatory insights",
     description:
-      "FDA, EMA, and regional pathway intelligence for ophthalmic sponsors.",
+      "Agency interaction strategy and pathway intelligence for novel ophthalmic mechanisms and delivery platforms.",
     category: "Regulation",
   },
   {
     title: "Market outlooks",
     description:
-      "Competitive landscape and access dynamics across retina and rare disease.",
+      "Competitive, access, and pricing dynamics across retina, rare disease, and specialty ophthalmic segments.",
     category: "Commercial",
   },
   {
     title: "Clinical perspectives",
     description:
-      "Endpoint strategy, trial design, and operational excellence in ophthalmology.",
+      "Endpoint strategy, imaging governance, and operational discipline in global ophthalmic trials.",
     category: "Clinical",
   },
   {
     title: "Innovation reports",
     description:
-      "Gene therapy, delivery science, and next-generation modality trends.",
+      "Gene therapy, sustained delivery, and modality-specific development and access considerations.",
     category: "Innovation",
   },
 ] as const;
@@ -229,32 +232,32 @@ export const futureTopics = [
   {
     title: "AI in ophthalmology",
     description:
-      "Imaging analytics, trial enrichment, and decision support for development teams.",
+      "Imaging analytics and trial enrichment — with emphasis on regulatory acceptability and operational validation.",
   },
   {
     title: "Precision medicine",
     description:
-      "Biomarker-led segmentation and targeted evidence for differentiated assets.",
+      "Biomarker-led segmentation and pre-specified subgroup strategy for differentiated assets.",
   },
   {
     title: "Gene therapies",
     description:
-      "Vector strategy, long-term follow-up, and access models for transformative modalities.",
+      "Vector selection, durability endpoints, and long-term follow-up obligations in retinal programs.",
   },
   {
     title: "Drug delivery innovation",
     description:
-      "Sustained-release platforms and ocular pharmacology advancing patient adherence.",
+      "Sustained-release and intravitreal platforms — CMC, device, and clinical interface planning.",
   },
   {
     title: "Real-world evidence",
     description:
-      "RWE frameworks that strengthen payer narratives and lifecycle strategy.",
+      "RWE frameworks that complement pivotal trials for payers and lifecycle decisions.",
   },
   {
     title: "Vision science innovation",
     description:
-      "Translational science connecting mechanism to meaningful visual function outcomes.",
+      "Translational links between mechanism, imaging findings, and functional vision outcomes.",
   },
 ] as const;
 
@@ -262,36 +265,35 @@ export const trustPillars = [
   {
     title: "Confidentiality",
     description:
-      "NDA-first engagement with disciplined information governance for sensitive programs.",
+      "NDA-first engagement with information governance appropriate for sensitive clinical and commercial programs.",
   },
   {
     title: "Scientific rigor",
     description:
-      "Evidence-led recommendations grounded in ophthalmic precedents and clinical reality.",
+      "Recommendations grounded in ophthalmic precedent, clinical operability, and explicit assumptions.",
   },
   {
     title: "Ethical standards",
     description:
-      "Patient-centered advisory aligned to integrity, transparency, and responsible innovation.",
+      "Patient-centered advisory aligned to integrity, transparency, and responsible development practices.",
   },
   {
     title: "Regulatory alignment",
     description:
-      "Pathway strategy designed for agency dialogue and defensible decision-making.",
+      "Pathway and evidence strategy designed for productive agency dialogue and defensible decisions.",
   },
   {
     title: "Patient-centered approach",
     description:
-      "Every recommendation ties to meaningful endpoints and real-world impact.",
+      "Focus on functional outcomes, treatment burden, and continuity of care in specialist settings.",
   },
 ] as const;
 
 export const partners = [
-  "CRO partners",
+  "Ophthalmic CRO partners",
+  "Global biopharma",
+  "Emerging biotech",
   "Specialty pharma",
-  "Biotech sponsors",
-  "Academic research",
-  "Healthcare innovation",
+  "Academic research centers",
   "Diagnostics & imaging",
 ] as const;
-

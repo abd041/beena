@@ -29,7 +29,7 @@ export function WhyChooseUs({
         sizes="100vw"
         grade="warm"
       />
-      <CinematicAtmosphere mood="warm" intensity="medium" />
+      <CinematicAtmosphere mood="warm" intensity="soft" />
 
       <Container className="relative">
         <SectionHeader
@@ -37,12 +37,12 @@ export function WhyChooseUs({
           title={
             isHome
               ? "Built for institutional ophthalmic programs"
-              : "Senior ophthalmic expertise, built for execution"
+              : "Ophthalmic advisory built for institutional sponsors"
           }
           description={
             isHome
               ? "Senior advisors who align science, regulation, and commercialization — with the clarity global sponsors expect."
-              : "A luxury advisory experience grounded in ophthalmology — designed to accelerate decisions across development, regulation, access, and commercialization."
+              : "Senior advisors who align development, regulatory, access, and commercialization — with governance-ready deliverables."
           }
           align="left"
           light

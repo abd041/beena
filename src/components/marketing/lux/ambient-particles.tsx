@@ -4,9 +4,8 @@ import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils/cn";
 
 const PARTICLES_LOW = [
-  { left: "12%", top: "22%", size: 2, delay: 0 },
-  { left: "68%", top: "38%", size: 2, delay: 1.4 },
-  { left: "84%", top: "62%", size: 1.5, delay: 0.7 },
+  { left: "18%", top: "28%", size: 1.5, delay: 0 },
+  { left: "72%", top: "45%", size: 1.5, delay: 1.2 },
 ] as const;
 
 const PARTICLES_HIGH = [
@@ -38,7 +37,7 @@ export function AmbientParticles({
       {particles.map((p, i) => (
         <span
           key={i}
-          className="absolute rounded-full bg-cyan-glow/20 animate-lux-float"
+          className="absolute rounded-full bg-cyan-glow/10 animate-lux-float"
           style={{
             left: p.left,
             top: p.top,

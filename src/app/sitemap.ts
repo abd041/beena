@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { staticCaseStudies } from "@/lib/data/case-studies";
-import { staticInsightPosts } from "@/lib/data/posts";
+import { getPostSlugs } from "@/lib/data/fetch-post-detail";
 import { staticServices } from "@/lib/data/services";
 
 const staticRoutes = [
@@ -17,7 +17,7 @@ const staticRoutes = [
   "/terms",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const lastModified = new Date();
@@ -36,9 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const insights = staticInsightPosts.map((p) => ({
-    url: `${baseUrl}/insights/${p.slug}`,
-    lastModified: new Date(p.publishedAt),
+  const insightSlugs = await getPostSlugs();
+  const insights = insightSlugs.map((slug) => ({
+    url: `${baseUrl}/insights/${slug}`,
+    lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

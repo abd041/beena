@@ -31,21 +31,21 @@ export function ScientificExpertise({
         sizes="100vw"
         grade="cool"
       />
-      <CinematicAtmosphere mood="cool" intensity="medium" />
+      <CinematicAtmosphere mood="cool" intensity="soft" />
 
       <Container className="relative">
         {isEditorial ? (
           <div className="grid gap-20 lg:grid-cols-12 lg:gap-20 lg:items-start">
             <Reveal className="lg:col-span-5 lg:sticky lg:top-32">
               <p className="lux-eyebrow">Scientific expertise</p>
-              <h2 className="lux-heading mt-6 text-3xl md:text-5xl lg:text-[3.35rem]">
+              <h2 className="lux-heading mt-6 text-2xl md:text-4xl lg:text-[2.75rem]">
                 Depth across
                 <br />
-                <span className="text-white/50">the ophthalmic lifecycle</span>
+                <span className="text-white/70">the ophthalmic lifecycle</span>
               </h2>
-              <p className="mt-9 max-w-sm text-[0.95rem] leading-[1.9] text-white/58 md:text-base">
-                One integrated advisory model — from translational science through
-                global launch.
+              <p className="mt-9 max-w-sm text-[0.95rem] leading-[1.8] text-white/75 md:text-base">
+                Integrated advisory from translational science through regulatory
+                dialogue, access planning, and launch readiness.
               </p>
               <div className="group relative mt-14 aspect-4/5 overflow-hidden rounded-[1.75rem] shadow-[0_48px_120px_rgba(0,0,0,0.4)] lg:mt-16">
                 <Image

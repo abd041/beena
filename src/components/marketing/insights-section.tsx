@@ -52,7 +52,7 @@ function FeaturedInsight({ post }: { post: InsightPost }) {
         <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-gold/90">
           {post.category}
         </p>
-        <h3 className="mt-5 max-w-2xl font-serif text-2xl leading-[1.15] tracking-[-0.02em] text-white md:text-4xl lg:text-[2.75rem]">
+        <h3 className="mt-5 max-w-2xl font-serif text-2xl leading-[1.2] tracking-[-0.02em] text-white md:text-3xl">
           {post.title}
         </h3>
         <p className="mt-5 line-clamp-2 max-w-xl text-base leading-[1.75] text-white/68">
@@ -96,8 +96,8 @@ export function InsightsSection({
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-12">
           <SectionHeader
             eyebrow="Thought leadership"
-            title="Insights for ophthalmic leaders"
-            description="Elite biotech perspectives on development, regulation, and commercial strategy."
+            title="Perspectives for ophthalmic development leaders"
+            description="Regulatory pathways, clinical evidence, and access strategy — written for executives and program owners."
             align="left"
             size="large"
           />
@@ -108,7 +108,7 @@ export function InsightsSection({
               "shrink-0 self-start md:mb-2",
             )}
           >
-            View all insights →
+            View all insights
           </Link>
         </div>
 

@@ -29,8 +29,8 @@ export function SiteFooter() {
         <div className="space-y-4">
           <BrandLogo size="lg" href="/" />
           <p className="text-sm leading-relaxed text-white/75">
-            Global ophthalmic biotech advisory and development partner —
-            science-driven, patient-focused.
+            Global ophthalmic biotech advisory — development, regulatory,
+            access, and commercialization.
           </p>
           <div className="flex gap-3 pt-2">
             <a
@@ -124,7 +124,12 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/55 md:flex-row">
-          <p>© {new Date().getFullYear()} BEEÑA-E Consulting. All rights reserved.</p>
+          <p className="max-w-xl text-center md:text-left">
+            © {new Date().getFullYear()} BEEÑA-E Consulting. All rights reserved.
+            <span className="mt-1 block text-white/45">
+              Confidential engagements. Site content is for general reference.
+            </span>
+          </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-gold">
               Privacy Policy

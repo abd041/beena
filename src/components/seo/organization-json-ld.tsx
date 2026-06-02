@@ -1,3 +1,5 @@
+import { footerContact } from "@/lib/data/home-content";
+
 export function OrganizationJsonLd() {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -7,12 +9,21 @@ export function OrganizationJsonLd() {
     "@type": "ProfessionalService",
     name: "BEEÑA-E Consulting",
     url: baseUrl,
+    logo: `${baseUrl}/images/beena-e-logo.png`,
     description:
-      "Global ophthalmic biotech advisory and development partner.",
+      "Senior ophthalmic biotech advisory for development, regulatory strategy, market access, and commercialization.",
     areaServed: "Worldwide",
+    email: footerContact.email,
+    telephone: footerContact.phone,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Danville",
+      addressRegion: "CA",
+      addressCountry: "US",
+    },
     serviceType: [
       "Ophthalmic Biotech Consulting",
-      "Product Development",
+      "Product Development Advisory",
       "Regulatory Affairs",
       "Market Access",
       "Commercialization",

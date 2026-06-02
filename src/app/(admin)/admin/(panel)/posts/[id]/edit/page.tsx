@@ -45,6 +45,7 @@ export default async function EditPostPage({ params, searchParams }: Props) {
     readTimeMin: post.read_time_min ?? 5,
     metaTitle: post.meta_title ?? "",
     metaDescription: post.meta_description ?? "",
+    relatedServiceSlug: post.related_service_slug ?? "",
   };
 
   return (

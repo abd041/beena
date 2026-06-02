@@ -1,4 +1,9 @@
 import { z } from "zod";
+import {
+  assessPostContent,
+  hasBlockingIssues,
+  SERVICE_SLUGS,
+} from "@/lib/content-governance";
 
 export const postSchema = z.object({
   title: z.string().min(3, "Title is required"),
@@ -17,6 +22,13 @@ export const postSchema = z.object({
   readTimeMin: z.coerce.number().int().min(1).max(120).optional(),
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
+  relatedServiceSlug: z
+    .string()
+    .optional()
+    .refine(
+      (v) => !v || (SERVICE_SLUGS as readonly string[]).includes(v),
+      "Select a valid related service",
+    ),
 });
 
 export type PostFormInput = z.infer<typeof postSchema>;
@@ -26,9 +38,29 @@ export type PostActionState = {
   message: string;
   postId?: string;
   errors?: Partial<Record<keyof PostFormInput, string[]>>;
+  governance?: string[];
 };
 
 export const initialPostState: PostActionState = {
   success: false,
   message: "",
 };
+
+export function getPublishGovernanceErrors(data: PostFormInput): string[] {
+  const issues = assessPostContent({
+    title: data.title,
+    slug: data.slug,
+    excerpt: data.excerpt,
+    content: data.content,
+    status: data.status,
+    coverImageUrl: data.coverImageUrl,
+    categoryId: data.categoryId,
+    metaTitle: data.metaTitle,
+    metaDescription: data.metaDescription,
+    readTimeMin: data.readTimeMin,
+    relatedServiceSlug: data.relatedServiceSlug || undefined,
+  });
+
+  if (!hasBlockingIssues(issues)) return [];
+  return issues.filter((i) => i.severity === "error").map((i) => i.message);
+}
