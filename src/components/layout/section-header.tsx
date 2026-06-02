@@ -7,6 +7,7 @@ export function SectionHeader({
   align = "center",
   light = false,
   className,
+  size = "default",
 }: {
   eyebrow?: string;
   title: string;
@@ -14,7 +15,10 @@ export function SectionHeader({
   align?: "center" | "left";
   light?: boolean;
   className?: string;
+  size?: "default" | "large";
 }) {
+  const isLarge = size === "large";
+
   return (
     <div
       className={cn(
@@ -24,18 +28,14 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p
-          className={cn(
-            "text-xs font-semibold uppercase tracking-[0.2em]",
-            light ? "text-gold" : "text-gold",
-          )}
-        >
-          {eyebrow}
-        </p>
+        <p className={cn("lux-eyebrow", !light && "text-gold")}>{eyebrow}</p>
       ) : null}
       <h2
         className={cn(
-          "mt-3 font-serif text-3xl md:text-4xl",
+          "mt-5",
+          isLarge
+            ? "font-serif text-3xl leading-[1.1] tracking-[-0.025em] md:text-5xl lg:text-[3.25rem]"
+            : "font-serif text-3xl leading-[1.12] tracking-[-0.02em] md:text-4xl lg:text-[2.75rem]",
           light ? "text-white" : "text-neutral-900",
         )}
       >
@@ -44,17 +44,18 @@ export function SectionHeader({
       {description ? (
         <p
           className={cn(
-            "mt-4 max-w-2xl text-base leading-relaxed",
+            "mt-6 leading-[1.75] md:mt-7",
+            isLarge ? "max-w-2xl text-base md:text-lg" : "lux-prose-narrow text-base md:text-lg",
             align === "center" && "mx-auto",
-            light ? "text-white/75" : "text-muted",
+            light ? "text-white/68" : "text-muted",
           )}
         >
           {description}
         </p>
       ) : null}
-      {align === "center" && light ? (
-        <div className="mx-auto mt-4 h-px w-16 bg-gold/60" aria-hidden />
-      ) : null}
+      {align === "left" && light && (
+        <div className="lux-divider mt-7" aria-hidden />
+      )}
     </div>
   );
 }

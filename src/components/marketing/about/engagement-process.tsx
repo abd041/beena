@@ -11,7 +11,11 @@ import { engagementSteps } from "@/lib/data/about-content";
 export function EngagementProcess() {
   return (
     <Section variant="light" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-ivory via-neutral-50 to-white" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-ivory via-neutral-50 to-white"
+        aria-hidden
+      />
+      <div className="lux-gradient-radial pointer-events-none absolute inset-0 opacity-60" aria-hidden />
       <Container className="relative">
         <SectionHeader
           eyebrow="Engagement process"
@@ -20,46 +24,61 @@ export function EngagementProcess() {
           align="left"
         />
 
-        <StaggerChildren className="mt-14 grid gap-6 lg:grid-cols-5">
+        <div className="relative mt-14 hidden lg:block" aria-hidden>
+          <div className="absolute left-0 right-0 top-8 h-px bg-linear-to-r from-transparent via-gold/40 to-transparent" />
+        </div>
+
+        <StaggerChildren className="relative mt-14 grid gap-6 lg:grid-cols-5">
           {engagementSteps.map((step, i) => (
             <StaggerItem key={step.title} className="h-full">
-              <article className="card-hover-lift h-full rounded-2xl border border-neutral-200/70 bg-white p-6 shadow-sm">
+              <article className="lux-glass-light card-hover-lift group relative h-full rounded-2xl p-6">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                    Step {i + 1}
-                  </p>
-                  <CheckCircle2 className="h-5 w-5 text-forest/50" aria-hidden />
+                  <span className="inline-flex size-9 items-center justify-center rounded-full border border-gold/30 bg-forest text-sm font-semibold text-gold">
+                    {i + 1}
+                  </span>
+                  <CheckCircle2
+                    className="h-5 w-5 text-forest/40 transition-colors [@media(hover:hover)]:group-hover:text-gold"
+                    aria-hidden
+                  />
                 </div>
-                <h3 className="mt-4 font-serif text-lg text-neutral-900">
+                <h3 className="mt-5 font-serif text-lg text-neutral-900">
                   {step.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {step.description}
                 </p>
-                <div className="mt-6 h-px w-full bg-neutral-100" aria-hidden />
-                <div className="mt-6 flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />
-                  <p className="text-xs text-muted">
-                    Executive-ready outputs
-                  </p>
-                </div>
+                <div
+                  className="mt-6 h-px w-full bg-linear-to-r from-gold/30 via-cyan-glow/20 to-transparent"
+                  aria-hidden
+                />
+                <p className="mt-5 text-xs text-muted">Executive-ready outputs</p>
+                {i < engagementSteps.length - 1 && (
+                  <span
+                    className="absolute -right-3 top-8 hidden h-2 w-2 rounded-full bg-gold/60 lg:block"
+                    aria-hidden
+                  />
+                )}
               </article>
             </StaggerItem>
           ))}
         </StaggerChildren>
 
         <Reveal delay={0.08} className="mt-14">
-          <div className="rounded-3xl border border-neutral-200/70 bg-forest px-8 py-10 text-white shadow-lg">
-            <h3 className="font-serif text-2xl">Built to integrate with your team</h3>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/75 md:text-base">
-              We embed alongside R&amp;D, regulatory, medical, and commercial leadership
-              — providing senior direction, crisp governance, and deliverables that keep
-              your program moving.
-            </p>
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-forest px-8 py-10 text-white shadow-[0_24px_80px_rgba(4,17,13,0.35)]">
+            <div className="lux-noise pointer-events-none absolute inset-0 opacity-50" aria-hidden />
+            <div className="relative">
+              <h3 className="font-serif text-2xl">
+                Built to integrate with your team
+              </h3>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/75 md:text-base">
+                We embed alongside R&amp;D, regulatory, medical, and commercial
+                leadership — providing senior direction, crisp governance, and
+                deliverables that keep your program moving.
+              </p>
+            </div>
           </div>
         </Reveal>
       </Container>
     </Section>
   );
 }
-

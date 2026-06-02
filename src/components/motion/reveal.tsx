@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils/cn";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function Reveal({
   children,
   className,
@@ -22,10 +24,10 @@ export function Reveal({
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.85, delay, ease: EASE }}
     >
       {children}
     </motion.div>

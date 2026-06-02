@@ -1,73 +1,102 @@
-import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
-import { Reveal } from "@/components/motion/reveal";
+import { CinematicAtmosphere } from "@/components/marketing/lux/cinematic-atmosphere";
+import { CinematicImage } from "@/components/marketing/lux/cinematic-image";
 import { StaggerChildren, StaggerItem } from "@/components/motion/stagger-children";
-import { whyChoose } from "@/lib/data/about-content";
+import { whyChoose, whyChooseHome } from "@/lib/data/about-content";
+import { cn } from "@/lib/utils/cn";
 
-export function WhyChooseUs() {
+type WhyItem = (typeof whyChoose)[number];
+
+export function WhyChooseUs({
+  variant = "full",
+}: {
+  variant?: "full" | "home";
+}) {
+  const isHome = variant === "home";
+  const items: readonly WhyItem[] = isHome ? whyChooseHome : whyChoose;
+
   return (
-    <Section variant="forest" className="relative overflow-hidden">
-      <Image
+    <Section
+      variant="forest"
+      className={cn("relative overflow-hidden", isHome && "lux-section-y")}
+    >
+      <CinematicImage
         src="/images/about/why-choose.jpg"
         alt=""
         fill
-        className="object-cover opacity-25"
         sizes="100vw"
-        aria-hidden
+        grade="warm"
       />
-      <div className="lux-noise pointer-events-none absolute inset-0 opacity-90" aria-hidden />
-      <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-b from-forest-dark/25 via-transparent to-forest-dark/70"
-        aria-hidden
-      />
+      <CinematicAtmosphere mood="warm" intensity="medium" />
 
       <Container className="relative">
         <SectionHeader
           eyebrow="Why sponsors choose us"
-          title="Senior ophthalmic expertise, built for execution"
-          description="A luxury advisory experience grounded in ophthalmology — designed to accelerate decisions across development, regulation, access, and commercialization."
+          title={
+            isHome
+              ? "Built for institutional ophthalmic programs"
+              : "Senior ophthalmic expertise, built for execution"
+          }
+          description={
+            isHome
+              ? "Senior advisors who align science, regulation, and commercialization — with the clarity global sponsors expect."
+              : "A luxury advisory experience grounded in ophthalmology — designed to accelerate decisions across development, regulation, access, and commercialization."
+          }
           align="left"
           light
+          size={isHome ? "large" : "default"}
         />
 
-        <StaggerChildren className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {whyChoose.map((item) => (
+        <StaggerChildren
+          className={cn(
+            "mt-20 md:mt-28",
+            isHome
+              ? "grid gap-10 md:grid-cols-2 md:gap-x-14 md:gap-y-16"
+              : "grid gap-8 sm:grid-cols-2 lg:grid-cols-3",
+          )}
+        >
+          {items.map((item) => (
             <StaggerItem key={item.title}>
-              <article className="lux-glass group card-hover-lift rounded-2xl p-7">
-                <div className="flex items-start gap-4">
-                  <span className="lux-ring inline-flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/6 p-3 text-gold">
-                    <item.icon className="size-5 shrink-0" aria-hidden />
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="font-serif text-xl text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/75">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="pointer-events-none mt-6 h-px w-full bg-white/10"
-                  aria-hidden
-                />
-                <div className="pointer-events-none mt-6 h-1.5 w-1.5 rounded-full bg-cyan-glow/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <article
+                className={cn(
+                  "lux-glass lux-card-glow group card-hover-lift h-full",
+                  isHome ? "p-10 md:p-12 lg:p-14" : "p-7",
+                )}
+              >
+                <span
+                  className={cn(
+                    "lux-icon-capsule lux-ring",
+                    isHome ? "size-14" : "size-12",
+                  )}
+                >
+                  <item.icon
+                    className={cn("shrink-0", isHome ? "size-6" : "size-5")}
+                    aria-hidden
+                  />
+                </span>
+                <h3
+                  className={cn(
+                    "mt-10 font-serif leading-[1.18] tracking-[-0.025em] text-white",
+                    isHome ? "text-2xl md:text-[1.8rem]" : "text-xl",
+                  )}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className={cn(
+                    "mt-5 max-w-md leading-[1.8] text-white/62",
+                    isHome ? "text-[0.95rem] md:text-base" : "text-sm",
+                  )}
+                >
+                  {item.description}
+                </p>
               </article>
             </StaggerItem>
           ))}
         </StaggerChildren>
-
-        <Reveal delay={0.1} className="mt-14">
-          <div className="lux-glass rounded-2xl p-7 md:p-10">
-            <p className="text-sm text-white/70">
-              Built for leaders who value precision. We deliver board-ready narratives,
-              defensible regulatory strategy, and launch alignment — without the friction
-              of layered consulting teams.
-            </p>
-          </div>
-        </Reveal>
       </Container>
     </Section>
   );
 }
-

@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils/cn";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function StaggerChildren({
   children,
   className,
-  stagger = 0.08,
+  stagger = 0.12,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -24,7 +26,7 @@ export function StaggerChildren({
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "-8%" }}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: stagger } },
@@ -52,11 +54,11 @@ export function StaggerItem({
     <motion.div
       className={cn(className)}
       variants={{
-        hidden: { opacity: 0, y: 16 },
+        hidden: { opacity: 0, y: 10 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+          transition: { duration: 0.7, ease: EASE },
         },
       }}
     >

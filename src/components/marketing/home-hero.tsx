@@ -6,6 +6,7 @@ import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { AmbientParticles } from "@/components/marketing/lux/ambient-particles";
 import { heroCopy } from "@/lib/data/home-content";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils/cn";
@@ -15,7 +16,10 @@ export function HomeHero() {
 
   const content = (
     <div className="space-y-8">
-      <h1 className="font-serif text-4xl leading-[1.1] md:text-5xl lg:text-[3.25rem]">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold/90">
+        Ophthalmic biotech advisory
+      </p>
+      <h1 className="font-serif text-4xl leading-[1.06] md:text-5xl lg:text-[3.35rem]">
         Global <span className="text-gold">Ophthalmic</span> Biotech Advisory
         &amp; Development Partner
       </h1>
@@ -53,15 +57,18 @@ export function HomeHero() {
         className="object-cover object-right"
         sizes="100vw"
       />
+      <div className="lux-noise pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <AmbientParticles />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-forest-dark via-forest/80 to-forest/20"
+        className="pointer-events-none absolute inset-0 bg-linear-to-r from-forest-dark via-forest/85 to-forest/25"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-forest-dark/30"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-forest-dark/40"
         aria-hidden
       />
-      <Container className="relative pb-14 pt-2 md:pb-16">
+      <div className="lux-gradient-radial pointer-events-none absolute inset-0" aria-hidden />
+      <Container className="relative pb-16 pt-2 md:pb-20">
         <div className="max-w-3xl text-left">
           {reduced ? (
             content

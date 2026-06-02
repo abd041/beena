@@ -6,17 +6,20 @@
   --forest-elevated: #0f2a22;
   --gold: #f7c35f;
   --gold-hover: #e5b24e;
+  --cyan-glow: #46f2d5;
+  --ivory: #f7f6f3;
   --neutral-50: #f7f6f3;
   --neutral-900: #1a1a1a;
   --muted: #5c6470;
   --background: #ffffff;
   --foreground: var(--neutral-900);
-  /* RISE Pakistan Health sub-brand */
   --rise-green: #014421;
   --rise-green-dark: #012a16;
   --rise-green-elevated: #0a5c36;
   --rise-yellow: #f9c74f;
   --rise-yellow-hover: #e8b63d;
+  --lux-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --lux-ease-slow: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @theme inline {
@@ -27,6 +30,8 @@
   --color-forest-elevated: var(--forest-elevated);
   --color-gold: var(--gold);
   --color-gold-hover: var(--gold-hover);
+  --color-cyan-glow: var(--cyan-glow);
+  --color-ivory: var(--ivory);
   --color-neutral-50: var(--neutral-50);
   --color-neutral-900: var(--neutral-900);
   --color-muted: var(--muted);
@@ -53,6 +58,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-serif {
@@ -60,14 +67,360 @@ body {
 }
 
 @layer utilities {
+  .lux-section-y {
+    @apply py-28 md:py-36 lg:py-44;
+  }
+
+  .lux-section-y-tight {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  .lux-eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-gold/85;
+  }
+
+  .lux-heading {
+    @apply font-serif leading-[1.12] tracking-[-0.02em] text-white;
+  }
+
+  .lux-heading-editorial {
+    @apply font-serif leading-[1.1] tracking-[-0.025em] text-neutral-900;
+  }
+
+  .lux-body {
+    @apply text-base leading-[1.75] text-white/72 md:text-lg md:leading-[1.8];
+  }
+
+  .lux-body-muted {
+    @apply text-base leading-[1.75] text-muted md:text-lg;
+  }
+
+  .lux-prose-narrow {
+    @apply max-w-xl;
+  }
+
+  .lux-prose-editorial {
+    @apply max-w-2xl;
+  }
+
   .card-hover-lift {
-    @apply transition-[transform,box-shadow,border-color] duration-300 motion-reduce:transition-none;
+    @apply transition-[transform,box-shadow,opacity] duration-500 ease-out motion-reduce:transition-none;
+    transition-timing-function: var(--lux-ease);
   }
 
   @media (hover: hover) and (pointer: fine) {
     .card-hover-lift:hover {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
     }
+  }
+
+  .lux-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  .lux-glass {
+    @apply rounded-[1.75rem] border border-transparent bg-white/[0.03] shadow-[0_40px_120px_rgba(0,0,0,0.28)] backdrop-blur-2xl;
+  }
+
+  .lux-glass-light {
+    @apply rounded-[1.75rem] border border-transparent bg-white/92 shadow-[0_28px_90px_rgba(11,28,22,0.07)] backdrop-blur-md;
+  }
+
+  .lux-ring {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .lux-icon-capsule {
+    @apply inline-flex shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.05] p-3 text-gold;
+  }
+
+  .lux-card-glow {
+    @apply relative overflow-hidden transition-[border-color,box-shadow,background-color] duration-500 ease-out;
+    transition-timing-function: var(--lux-ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .lux-card-glow:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(247, 195, 95, 0.08);
+    }
+  }
+
+  .lux-gradient-radial {
+    background: radial-gradient(
+      ellipse 90% 70% at 50% -10%,
+      rgba(70, 242, 213, 0.08),
+      transparent 65%
+    );
+  }
+
+  .lux-gradient-drift {
+    background: radial-gradient(
+      ellipse 60% 50% at 80% 80%,
+      rgba(247, 195, 95, 0.04),
+      transparent 60%
+    );
+    animation: lux-gradient-drift 18s ease-in-out infinite;
+  }
+
+  .lux-glow-emerald {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(11, 28, 22, 0) 0%,
+      rgba(70, 242, 213, 0.06) 45%,
+      transparent 70%
+    );
+  }
+
+  .lux-glow-cyan {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(70, 242, 213, 0.05) 0%,
+      transparent 65%
+    );
+  }
+
+  .lux-vignette {
+    background: radial-gradient(
+      ellipse 130% 110% at 50% 50%,
+      transparent 35%,
+      rgba(7, 20, 16, 0.62) 100%
+    );
+  }
+
+  .lux-vignette-edge {
+    box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.45);
+  }
+
+  .lux-fog-layer {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 20, 16, 0.15) 0%,
+      transparent 35%,
+      transparent 65%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  }
+
+  .lux-bloom-top {
+    background: radial-gradient(
+      ellipse 90% 100% at 50% 0%,
+      rgba(70, 242, 213, 0.06),
+      transparent 70%
+    );
+    animation: lux-bloom-breathe 12s ease-in-out infinite;
+  }
+
+  .lux-mood-base--warm {
+    background: linear-gradient(
+      165deg,
+      rgba(11, 28, 22, 0.92) 0%,
+      rgba(15, 42, 34, 0.75) 50%,
+      rgba(7, 20, 16, 0.95) 100%
+    );
+  }
+
+  .lux-mood-base--cool {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 14, 12, 0.9) 0%,
+      rgba(11, 28, 22, 0.7) 45%,
+      rgba(4, 12, 10, 0.95) 100%
+    );
+  }
+
+  .lux-mood-base--stage {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(7, 20, 16, 0.85) 40%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+  }
+
+  .lux-mood-base--deep {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 10, 8, 0.95) 0%,
+      rgba(11, 28, 22, 0.5) 50%,
+      rgba(0, 0, 0, 0.98) 100%
+    );
+  }
+
+  .lux-mood-base--neutral {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 28, 22, 0.88) 0%,
+      rgba(11, 28, 22, 0.65) 100%
+    );
+  }
+
+  .lux-mood-base--statement {
+    background: transparent;
+  }
+
+  .lux-mood-glow--warm {
+    background: radial-gradient(
+      ellipse 70% 50% at 20% 20%,
+      rgba(247, 195, 95, 0.07),
+      transparent 65%
+    );
+  }
+
+  .lux-mood-glow--cool {
+    background: radial-gradient(
+      ellipse 60% 45% at 80% 30%,
+      rgba(70, 242, 213, 0.06),
+      transparent 60%
+    );
+  }
+
+  .lux-mood-glow--stage {
+    background: radial-gradient(
+      ellipse 80% 55% at 50% 40%,
+      rgba(70, 242, 213, 0.09),
+      transparent 55%
+    );
+    animation: lux-bloom-breathe 14s ease-in-out infinite;
+  }
+
+  .lux-mood-glow--deep {
+    background: radial-gradient(
+      ellipse 50% 40% at 50% 80%,
+      rgba(247, 195, 95, 0.04),
+      transparent 70%
+    );
+  }
+
+  .lux-mood-glow--neutral {
+    background: radial-gradient(
+      ellipse 90% 40% at 50% 0%,
+      rgba(70, 242, 213, 0.05),
+      transparent 70%
+    );
+  }
+
+  .lux-editorial-haze {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(247, 246, 243, 0.9),
+      rgba(247, 246, 243, 1) 70%
+    );
+    animation: lux-gradient-drift 24s ease-in-out infinite;
+  }
+
+  .lux-editorial-glow {
+    background: radial-gradient(
+      ellipse 60% 40% at 50% 100%,
+      rgba(11, 28, 22, 0.04),
+      transparent 70%
+    );
+  }
+
+  .lux-image-grade {
+    filter: saturate(0.55) contrast(1.08) brightness(0.78);
+    transform: scale(1.02);
+  }
+
+  .lux-image-overlay {
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
+
+  .lux-image-overlay--warm {
+    background: linear-gradient(
+      145deg,
+      rgba(11, 28, 22, 0.75) 0%,
+      rgba(15, 42, 34, 0.55) 50%,
+      rgba(7, 20, 16, 0.8) 100%
+    );
+  }
+
+  .lux-image-overlay--cool {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 14, 12, 0.7) 0%,
+      rgba(11, 28, 22, 0.5) 100%
+    );
+  }
+
+  .lux-image-overlay--neutral {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 20, 16, 0.65) 0%,
+      rgba(11, 28, 22, 0.45) 100%
+    );
+  }
+
+  .lux-image-overlay--deep {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(11, 28, 22, 0.6) 100%
+    );
+  }
+
+  .lux-image-vignette {
+    background: radial-gradient(
+      ellipse 110% 100% at 50% 50%,
+      transparent 30%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+
+  .lux-image-haze {
+    background: linear-gradient(
+      to top,
+      rgba(7, 20, 16, 0.65) 0%,
+      transparent 45%
+    );
+    opacity: 0.85;
+  }
+
+  .lux-map-stage {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 64px 180px rgba(0, 0, 0, 0.7),
+      0 0 80px rgba(70, 242, 213, 0.06);
+  }
+
+  .lux-map-bloom {
+    background: radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      rgba(70, 242, 213, 0.12),
+      transparent 65%
+    );
+    animation: lux-bloom-breathe 10s ease-in-out infinite;
+  }
+
+  .lux-divider {
+    @apply h-px w-14 bg-linear-to-r from-gold/50 via-gold/20 to-transparent;
+  }
+
+  .lux-stat-value {
+    @apply font-serif tabular-nums tracking-[-0.03em] text-white;
+  }
+
+  .lux-read-bar {
+    @apply absolute bottom-0 left-0 h-px w-0 bg-gold/80 transition-[width] duration-700 ease-out;
+    transition-timing-function: var(--lux-ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .lux-read-bar {
+      width: 100%;
+    }
+  }
+
+  .animate-lux-float {
+    animation: lux-float 7s ease-in-out infinite;
   }
 }
 
@@ -77,5 +430,77 @@ body {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes lux-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes lux-pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@keyframes lux-gradient-drift {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.04) translate(0.5%, -0.5%);
+  }
+}
+
+@keyframes lux-bloom-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes lux-line-flow {
+  0% {
+    stroke-dashoffset: 24;
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lux-gradient-drift,
+  .lux-bloom-top,
+  .lux-mood-glow--stage,
+  .lux-map-bloom,
+  .animate-lux-float,
+  .lux-editorial-haze,
+  [class*="lux-line-flow"] {
+    animation: none !important;
+  }
+
+  .card-hover-lift:hover {
+    transform: none !important;
   }
 }
